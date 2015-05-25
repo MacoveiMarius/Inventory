@@ -41,10 +41,5 @@ namespace InventorySolution
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }
-		
-		private string xxxxxxx()
-		{
-			return "XXXXXXXXX";
-		}
     }
 }
