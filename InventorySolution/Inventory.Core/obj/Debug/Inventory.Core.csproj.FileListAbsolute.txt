@@ -1,0 +1,5 @@
+D:\USV\InventorySolution\Inventory.Core\bin\Debug\Inventory.Core.dll
+D:\USV\InventorySolution\Inventory.Core\bin\Debug\Inventory.Core.pdb
+D:\USV\InventorySolution\Inventory.Core\obj\Debug\Inventory.Core.csprojResolveAssemblyReference.cache
+D:\USV\InventorySolution\Inventory.Core\obj\Debug\Inventory.Core.dll
+D:\USV\InventorySolution\Inventory.Core\obj\Debug\Inventory.Core.pdb

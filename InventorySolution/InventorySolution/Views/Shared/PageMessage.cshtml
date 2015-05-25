@@ -1,0 +1,11 @@
+﻿@using InventorySolution.Classes.Utility
+@using InventorySolution.Models
+@model InventorySolution.Models.MessageModel
+
+<div class="@string.Format("alert alert-dismissable {0}", StringEnum.GetStringValue(Model.Type))" style="margin-top: 10px;">
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+    <i class="icon @Url.Content(StringEnum.GetStringValue(Model.Icon)) %>"></i>
+    <span>@Model.Message</span>
+</div>     
+
+

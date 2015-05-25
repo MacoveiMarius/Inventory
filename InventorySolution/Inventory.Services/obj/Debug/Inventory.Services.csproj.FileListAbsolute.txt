@@ -1,0 +1,7 @@
+D:\USV\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.csprojResolveAssemblyReference.cache
+D:\USV\InventorySolution\Inventory.Services\bin\Debug\Inventory.Services.dll
+D:\USV\InventorySolution\Inventory.Services\bin\Debug\Inventory.Services.pdb
+D:\USV\InventorySolution\Inventory.Services\bin\Debug\Inventory.Core.dll
+D:\USV\InventorySolution\Inventory.Services\bin\Debug\Inventory.Core.pdb
+D:\USV\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.dll
+D:\USV\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.pdb

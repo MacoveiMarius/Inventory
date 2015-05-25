@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryWebApplication", "InventorySolution\InventoryWebApplication.csproj", "{F04B00FE-8741-4194-9D44-838EA3391D62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryWebApplication.Tests", "InventorySolution.Tests\InventoryWebApplication.Tests.csproj", "{871FB7D3-FE6B-4AB8-98CA-A8DE21C0A567}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{285B8113-2908-4D13-A5F1-74CB175F3BEF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{03E06A82-9810-44E6-BE31-59BE328F1C20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.Services", "Inventory.Services\Inventory.Services.csproj", "{D12D7B61-0AF2-4781-A53C-74314E347A01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8EB68BC2-0E1E-487D-BDBA-5F504860CA1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.Core", "Inventory.Core\Inventory.Core.csproj", "{A6CBBEBA-C671-41A0-8718-130152678D72}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F04B00FE-8741-4194-9D44-838EA3391D62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F04B00FE-8741-4194-9D44-838EA3391D62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F04B00FE-8741-4194-9D44-838EA3391D62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F04B00FE-8741-4194-9D44-838EA3391D62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{871FB7D3-FE6B-4AB8-98CA-A8DE21C0A567}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{871FB7D3-FE6B-4AB8-98CA-A8DE21C0A567}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{871FB7D3-FE6B-4AB8-98CA-A8DE21C0A567}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{871FB7D3-FE6B-4AB8-98CA-A8DE21C0A567}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D12D7B61-0AF2-4781-A53C-74314E347A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D12D7B61-0AF2-4781-A53C-74314E347A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D12D7B61-0AF2-4781-A53C-74314E347A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D12D7B61-0AF2-4781-A53C-74314E347A01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6CBBEBA-C671-41A0-8718-130152678D72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6CBBEBA-C671-41A0-8718-130152678D72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6CBBEBA-C671-41A0-8718-130152678D72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6CBBEBA-C671-41A0-8718-130152678D72}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F04B00FE-8741-4194-9D44-838EA3391D62} = {285B8113-2908-4D13-A5F1-74CB175F3BEF}
+		{871FB7D3-FE6B-4AB8-98CA-A8DE21C0A567} = {8EB68BC2-0E1E-487D-BDBA-5F504860CA1C}
+		{D12D7B61-0AF2-4781-A53C-74314E347A01} = {03E06A82-9810-44E6-BE31-59BE328F1C20}
+		{A6CBBEBA-C671-41A0-8718-130152678D72} = {03E06A82-9810-44E6-BE31-59BE328F1C20}
+	EndGlobalSection
+EndGlobal
