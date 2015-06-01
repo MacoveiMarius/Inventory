@@ -9,7 +9,7 @@ namespace InventorySolution.Models
     public class TipModel
     {
         [Display(Name = "Nr. Crt.")]
-        public int Id { get; set; }
+        public int TipId { get; set; }
 
         [Required]
         [Display(Name = "Nume")]
