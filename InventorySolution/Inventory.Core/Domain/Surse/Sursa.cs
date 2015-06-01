@@ -7,12 +7,13 @@ namespace Inventory.Core.Domain
 {
     [Table(Name = "dbo.Sursa")]
     [DataContract]
-    [KnownType(typeof(Sursa))]
+    [KnownType(typeof (Sursa))]
     public class Sursa : BaseEntity
     {
         private EntitySet<Inventar> _inventare;
 
-        //[ScriptIgnore]
+        #region Inventare
+
         [DataMember]
         [Association(Storage = "_inventare", ThisKey = "Id", OtherKey = "SursaId",
             IsForeignKey = true)]
@@ -28,7 +29,7 @@ namespace Inventory.Core.Domain
                 _inventare = ValidateEntitySet<Inventar>(value) ?? new EntitySet<Inventar>(OnAdd, OnRemove);
                 _inventare.Assign(value);
             }
-        } 
+        }
 
         public Sursa()
         {
@@ -45,20 +46,16 @@ namespace Inventory.Core.Domain
             entity.SursaEntity = null;
         }
 
-        /// <summary>
-        /// Gets or sets the setting identifier
-        /// </summary>
+        #endregion
+
         [DataMember]
         [Column(IsDbGenerated = true, IsPrimaryKey = true, Name = "Nr_crt")]
-        public int Id { get; set; } 
-        
-        /// <summary>
-        /// Gets or sets the setting identifier
-        /// </summary>
+        public int Id { get; set; }
+
         [DataMember]
         [Column(CanBeNull = false, Name = "Sursa")]
         public string Nume { get; set; }
-          
+
         public override int GetId()
         {
             return Id;

@@ -22,7 +22,7 @@ namespace Inventory.Services
         {
             using (var context = GestiuniDb.Create(_strDbConnectionString.ToString()))
             {
-                var result = (from t in context.GestiuniTable
+                var result = (from t in context.Gestiuni
                              select t).ToList<Gestiune>();
                 return result;
             }
@@ -32,7 +32,7 @@ namespace Inventory.Services
         {
             using (var context = GestiuniDb.Create(_strDbConnectionString.ToString()))
             {
-                var result = (from t in context.GestiuniTable
+                var result = (from t in context.Gestiuni
                               where t.Id == id
                               select t).SingleOrDefault();
                 return result;

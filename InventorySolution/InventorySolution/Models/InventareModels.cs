@@ -21,11 +21,11 @@ namespace InventorySolution.Models
 
         [Required]
         [Display(Name = "Gestiune")]
-        public Gestiune Gestiune { get; set; }
+        public GestiuneModel Gestiune { get; set; }
 
         [Required]
         [Display(Name = "Laborator")]
-        public Laborator Laborator { get; set; }
+        public LaboratorModel Laborator { get; set; }
 
         [Display(Name = "Perioada functionalitate")]
         public string AnPFun { get; set; }
@@ -50,14 +50,14 @@ namespace InventorySolution.Models
 
         [Required]
         [Display(Name = "Tip")]
-        public Tip Tip { get; set; }
+        public TipModel Tip { get; set; }
 
         [Display(Name = "Natura")]
         public string Natura { get; set; }
 
         [Required]
         [Display(Name = "Sursa")]
-        public Sursa Sursa { get; set; }
+        public SursaModel Sursa { get; set; }
 
         [Display(Name = "Mentiuni")]
         public string Mentiuni { get; set; }
@@ -67,11 +67,11 @@ namespace InventorySolution.Models
 
     public class InventareModel
     {
-        public List<Inventar> Inventare { get; set; }
+        public List<InventarModel> Inventare { get; set; }
 
         public InventareModel()
         {
-            Inventare = new List<Inventar>();
+            Inventare = new List<InventarModel>();
         }
 
         public MessageModel Message { get; set; }
@@ -79,7 +79,7 @@ namespace InventorySolution.Models
 
     public class NewInventar
     {
-        public Inventar Inventar { get; set; }
+        public InventarModel Inventar { get; set; }
 
         public  int SelectedGestiuneId { get; set; }
         public List<Gestiune> Gestiuni { get; set; }
@@ -93,6 +93,8 @@ namespace InventorySolution.Models
         public int SelectedSursaId { get; set; }
         public List<Sursa> Surse { get; set; } 
 
+        public CalculatorModel Calculator { get; set; }
+
         public MessageModel Message { get; set; }
-    } 
+    }
 }

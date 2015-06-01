@@ -26,7 +26,7 @@ namespace Inventory.Services
             using (var context = SurseDb.Create(_strDbConnectionString.ToString()))
             {
                 PreLoadData(context, loadFullData);
-                var result = (from t in context.SurseTable
+                var result = (from t in context.Surse
                     where t.Id > 0      // sursa cu id-ul '0' este NULL
                     select t).ToList<Sursa>();
                 return result;
@@ -43,7 +43,7 @@ namespace Inventory.Services
             using (var context = SurseDb.Create(_strDbConnectionString.ToString()))
             {
                 PreLoadData(context, loadFullData);
-                var result = (from t in context.SurseTable
+                var result = (from t in context.Surse
                               where t.Id == id
                               select t).SingleOrDefault();
                 return result;
@@ -55,7 +55,7 @@ namespace Inventory.Services
             ServiceResult result = new ServiceResult();
             using (var context = SurseDb.Create(_strDbConnectionString.ToString()))
             {
-                var sursa = (from t in context.SurseTable
+                var sursa = (from t in context.Surse
                               where t.Id == id
                               select t).SingleOrDefault();
                 if (sursa == null)
@@ -63,15 +63,16 @@ namespace Inventory.Services
                     return;
                 }
 
-                var inventare = from t in context.InventareTable
+                var inventare = from t in context.Inventare
                     where t.SursaId == id
                     select t;
-                if (inventare != null)
+
+                if (inventare != null && inventare.Count() > 0)
                 {
-                    context.InventareTable.DeleteAllOnSubmit(inventare);
+                    context.Inventare.DeleteAllOnSubmit(inventare);
                     context.SubmitChanges();
                 }
-                context.SurseTable.DeleteOnSubmit(sursa);
+                context.Surse.DeleteOnSubmit(sursa);
                 context.SubmitChanges();
             }
         }
@@ -83,7 +84,7 @@ namespace Inventory.Services
             {
                 try
                 {
-                    context.SurseTable.InsertOnSubmit(sursa);
+                    context.Surse.InsertOnSubmit(sursa);
                     context.SubmitChanges();
 
                     result.EntityId =  sursa.Id;
@@ -103,7 +104,7 @@ namespace Inventory.Services
             {
                 try
                 {
-                    var targetNote = (from n in context.SurseTable
+                    var targetNote = (from n in context.Surse
                                       where n.Id == updateSursa.Id
                                       select n).FirstOrDefault();
                     if (targetNote == null)

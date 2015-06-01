@@ -26,7 +26,7 @@ namespace Inventory.Services
             using (var context = InventareDb.Create(_strDbConnectionString.ToString()))
             {
                 PreLoadData(context);
-                var result = (from i in context.InventareTable
+                var result = (from i in context.Inventare
                     where i.Id == inventarId
                     select i).SingleOrDefault();
 
@@ -39,7 +39,7 @@ namespace Inventory.Services
             using (var context = InventareDb.Create(_strDbConnectionString.ToString()))
             {
                 PreLoadData(context, loadFullData);
-                var result = (from i in context.InventareTable
+                var result = (from i in context.Inventare
                               select i).ToList<Inventar>();
                 return result;
             }
@@ -52,7 +52,7 @@ namespace Inventory.Services
                 try
                 {
                     int deletedInventareCount = (int) OperationResult.Error;
-                    var inventare = from inventar in context.InventareTable
+                    var inventare = from inventar in context.Inventare
                         where inventar.SursaId == sursaId
                         select inventar;
 
@@ -60,7 +60,7 @@ namespace Inventory.Services
                     {
                         return (int) OperationResult.ErrorItemNotFound;
                     }
-                    context.InventareTable.DeleteAllOnSubmit(inventare);
+                    context.Inventare.DeleteAllOnSubmit(inventare);
                     context.SubmitChanges();
                     deletedInventareCount = inventare.Count();
 

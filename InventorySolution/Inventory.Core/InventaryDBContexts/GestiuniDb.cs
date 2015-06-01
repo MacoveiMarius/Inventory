@@ -11,45 +11,24 @@ using Inventory.Core.Domain;
 
 namespace Inventory.Core
 {
-    public class CalculatoareDb : InventaryDataContext
+    
+    public class GestiuniDb : InventaryDataContext
     {
-        private CalculatoareDb(SqlConnection conn)
+        private GestiuniDb(SqlConnection conn)
             : base(conn)
         {
         }
 
-        public static CalculatoareDb Create(string connectionString)
+        public static GestiuniDb Create(string connectionString)
         {
-            return new CalculatoareDb(new SqlConnection(connectionString));
+            return new GestiuniDb(new SqlConnection(connectionString));
         }
 
         #region TABLES
-        public Table<Calculator> CalculatoareTable
+        public Table<Gestiune> Gestiuni
         {
-            get { return GetTable<Calculator>(); }
+            get { return GetTable<Gestiune>(); }
         }
         #endregion TABLES
-
-        #region STORED PROCEDURES
-        //[Function(Name = "GetTestById")]
-        //public ISingleResult<Test> RetrieveSettingById(int testId,
-        //    long subscriptionId)
-        //{
-        //    IExecuteResult result = ExecuteMethodCall(this, (MethodInfo)(MethodBase.GetCurrentMethod()),
-        //        testId);
-
-        //    return result.ReturnValue as ISingleResult<Test>;
-        //}
-
-        //[Function(Name = "GetTests")]
-        //[ResultType(typeof(Test))]
-        //public IMultipleResults RetrieveSettingsByIds()
-        //{
-        //    var t = (MethodInfo)(MethodBase.GetCurrentMethod());
-        //    IExecuteResult result = ExecuteMethodCall(this, t);
-        //    return result.ReturnValue as IMultipleResults;
-        //}
-
-        #endregion STORED PROCEDURES
     }
 }

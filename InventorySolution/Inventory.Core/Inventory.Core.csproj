@@ -55,12 +55,12 @@
     <Compile Include="Domain\Surse\Sursa.cs" />
     <Compile Include="Domain\Laboratoare\Laborator.cs" />
     <Compile Include="Domain\Gestiuni\Gestiune.cs" />
-    <Compile Include="InventaryDBContexts\CalculatoareDb.cs" />
+    <Compile Include="InventaryDBContexts\GestiuniDb.cs" />
     <Compile Include="InventaryDBContexts\InventareDb.cs" />
     <Compile Include="InventaryDBContexts\TipuriDb.cs" />
     <Compile Include="InventaryDBContexts\SurseDb.cs" />
     <Compile Include="InventaryDBContexts\LaboratoareDb.cs" />
-    <Compile Include="InventaryDBContexts\GestiuniDb.cs" />
+    <Compile Include="InventaryDBContexts\CalculatoareDb.cs" />
     <Compile Include="InventaryDBContexts\InventaryDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -22,7 +22,7 @@ namespace Inventory.Services
         {
             using (var context = TipuriDb.Create(_strDbConnectionString.ToString()))
             {
-                var result = (from t in context.TipuriTable
+                var result = (from t in context.Tipuri
                              select t).ToList<Tip>();
                 return result;
             }

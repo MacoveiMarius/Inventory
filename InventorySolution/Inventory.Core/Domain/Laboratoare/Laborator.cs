@@ -7,10 +7,12 @@ namespace Inventory.Core.Domain
 {
     [Table(Name = "dbo.Laborator")]
     [DataContract]
-    [KnownType(typeof(Laborator))]
+    [KnownType(typeof (Laborator))]
     public class Laborator : BaseEntity
     {
         private EntitySet<Inventar> _inventare;
+
+        #region Inventare
 
         [Association(Storage = "_inventare", ThisKey = "Id", OtherKey = "LaboratorId",
             IsForeignKey = true)]
@@ -26,9 +28,9 @@ namespace Inventory.Core.Domain
                 _inventare = ValidateEntitySet<Inventar>(value) ?? new EntitySet<Inventar>(OnAdd, OnRemove);
                 _inventare.Assign(value);
             }
-        } 
+        }
 
-         public Laborator()
+        public Laborator()
         {
             _inventare = new EntitySet<Inventar>(OnAdd, OnRemove);
         }
@@ -43,16 +45,12 @@ namespace Inventory.Core.Domain
             entity.LaboratorEntity = null;
         }
 
-        /// <summary>
-        /// Gets or sets the setting identifier
-        /// </summary>
+        #endregion
+
         [DataMember]
         [Column(IsDbGenerated = true, IsPrimaryKey = true, Name = "Nr_crt")]
-        public int Id { get; set; } 
-        
-        /// <summary>
-        /// Gets or sets the setting identifier
-        /// </summary>
+        public int Id { get; set; }
+
         [DataMember]
         [Column(CanBeNull = false, Name = "Laborator")]
         public string Nume { get; set; }

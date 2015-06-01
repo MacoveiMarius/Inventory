@@ -7,10 +7,12 @@ namespace Inventory.Core.Domain
 {
     [Table(Name = "dbo.Tip")]
     [DataContract]
-    [KnownType(typeof(Tip))]
+    [KnownType(typeof (Tip))]
     public class Tip : BaseEntity
     {
         private EntitySet<Inventar> _inventare;
+
+        #region Inventare
 
         [Association(Storage = "_inventare", ThisKey = "Id", OtherKey = "TipId",
             IsForeignKey = true)]
@@ -26,9 +28,9 @@ namespace Inventory.Core.Domain
                 _inventare = ValidateEntitySet<Inventar>(value) ?? new EntitySet<Inventar>(OnAdd, OnRemove);
                 _inventare.Assign(value);
             }
-        } 
+        }
 
-         public Tip()
+        public Tip()
         {
             _inventare = new EntitySet<Inventar>(OnAdd, OnRemove);
         }
@@ -43,20 +45,16 @@ namespace Inventory.Core.Domain
             entity.TipEntity = null;
         }
 
-        /// <summary>
-        /// Gets or sets the setting identifier
-        /// </summary>
+        #endregion
+
         [DataMember]
         [Column(IsDbGenerated = true, IsPrimaryKey = true, Name = "Nr_crt")]
-        public int Id { get; set; } 
-        
-        /// <summary>
-        /// Gets or sets the setting identifier
-        /// </summary>
+        public int Id { get; set; }
+
         [DataMember]
         [Column(CanBeNull = false, Name = "Tip")]
         public string Nume { get; set; }
-        
+
         public override int GetId()
         {
             return Id;

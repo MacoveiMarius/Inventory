@@ -22,7 +22,7 @@ namespace Inventory.Services
         {
             using (var context = LaboratoareDb.Create(_strDbConnectionString.ToString()))
             {
-                var result = (from t in context.LaboratoareTable
+                var result = (from t in context.Laboratoare
                               select t).ToList<Laborator>();
                 return result;
             }

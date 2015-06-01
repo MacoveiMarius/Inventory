@@ -11,7 +11,6 @@ using Inventory.Core.Domain;
 
 namespace Inventory.Core
 {
-    
     public class SurseDb : InventaryDataContext
     {
         private SurseDb(SqlConnection conn)
@@ -25,37 +24,17 @@ namespace Inventory.Core
         }
 
         #region TABLES
-        public Table<Sursa> SurseTable
+
+        public Table<Sursa> Surse
         {
             get { return GetTable<Sursa>(); }
         }
 
-        public Table<Inventar> InventareTable
+        public Table<Inventar> Inventare
         {
             get { return GetTable<Inventar>(); }
         }
+
         #endregion TABLES
-
-        #region STORED PROCEDURES
-        //[Function(Name = "GetTestById")]
-        //public ISingleResult<Test> RetrieveSettingById(int testId,
-        //    long subscriptionId)
-        //{
-        //    IExecuteResult result = ExecuteMethodCall(this, (MethodInfo)(MethodBase.GetCurrentMethod()),
-        //        testId);
-
-        //    return result.ReturnValue as ISingleResult<Test>;
-        //}
-
-        //[Function(Name = "GetTests")]
-        //[ResultType(typeof(Test))]
-        //public IMultipleResults RetrieveSettingsByIds()
-        //{
-        //    var t = (MethodInfo)(MethodBase.GetCurrentMethod());
-        //    IExecuteResult result = ExecuteMethodCall(this, t);
-        //    return result.ReturnValue as IMultipleResults;
-        //}
-
-        #endregion STORED PROCEDURES
     }
 }

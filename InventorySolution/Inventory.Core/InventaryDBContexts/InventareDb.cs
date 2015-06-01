@@ -7,11 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Linq.Mapping;
 using System.Reflection;
+using System.Threading;
 using Inventory.Core.Domain;
 
 namespace Inventory.Core
 {
-    
     public class InventareDb : InventaryDataContext
     {
         private InventareDb(SqlConnection conn)
@@ -25,52 +25,36 @@ namespace Inventory.Core
         }
 
         #region TABLES
-        public Table<Inventar> InventareTable
+
+        public Table<Inventar> Inventare
         {
             get { return GetTable<Inventar>(); }
         }
 
-        public Table<Sursa> SurseTable
+        public Table<Sursa> Surse
         {
             get { return GetTable<Sursa>(); }
         }
 
-        public Table<Laborator> LaboratoareTable
+        public Table<Laborator> Laboratoare
         {
             get { return GetTable<Laborator>(); }
         }
 
-        public Table<Gestiune> GestiuniTable
+        public Table<Gestiune> Gestiuni
         {
             get { return GetTable<Gestiune>(); }
         }
 
-        public Table<Tip> TipuriTable
+        public Table<Tip> Tipuri
         {
             get { return GetTable<Tip>(); }
         }
+
+        public Table<Calculator> Calculatoare
+        {
+            get { return GetTable<Calculator>(); }
+        } 
         #endregion TABLES
-
-        #region STORED PROCEDURES
-        //[Function(Name = "GetTestById")]
-        //public ISingleResult<Test> RetrieveSettingById(int testId,
-        //    long subscriptionId)
-        //{
-        //    IExecuteResult result = ExecuteMethodCall(this, (MethodInfo)(MethodBase.GetCurrentMethod()),
-        //        testId);
-
-        //    return result.ReturnValue as ISingleResult<Test>;
-        //}
-
-        //[Function(Name = "GetTests")]
-        //[ResultType(typeof(Test))]
-        //public IMultipleResults RetrieveSettingsByIds()
-        //{
-        //    var t = (MethodInfo)(MethodBase.GetCurrentMethod());
-        //    IExecuteResult result = ExecuteMethodCall(this, t);
-        //    return result.ReturnValue as IMultipleResults;
-        //}
-
-        #endregion STORED PROCEDURES
     }
 }

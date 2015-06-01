@@ -8,10 +8,12 @@ namespace Inventory.Core.Domain
 {
     [Table(Name = "dbo.Gestiune")]
     [DataContract]
-    [KnownType(typeof(Gestiune))]
+    [KnownType(typeof (Gestiune))]
     public class Gestiune : BaseEntity
     {
         private EntitySet<Inventar> _inventare;
+
+        #region Inventare
 
         [Association(Storage = "_inventare", ThisKey = "Id", OtherKey = "GestiuneId",
             IsForeignKey = true)]
@@ -27,9 +29,11 @@ namespace Inventory.Core.Domain
                 _inventare = ValidateEntitySet<Inventar>(value) ?? new EntitySet<Inventar>(OnAdd, OnRemove);
                 _inventare.Assign(value);
             }
-        } 
+        }
 
-         public Gestiune()
+        #endregion
+
+        public Gestiune()
         {
             _inventare = new EntitySet<Inventar>(OnAdd, OnRemove);
         }
@@ -44,39 +48,21 @@ namespace Inventory.Core.Domain
             entity.GestiuneEntity = null;
         }
 
-        /// <summary>
-        /// Gets or sets the setting identifier
-        /// </summary>
         [DataMember]
         [Column(IsDbGenerated = true, IsPrimaryKey = true, Name = "Gestiune")]
-        public int Id { get; set; } 
-        
-        /// <summary>
-        /// Gets or sets the setting identifier
-        /// </summary>
+        public int Id { get; set; }
+
         [DataMember]
         [Column(CanBeNull = false, Name = "Nume")]
         public string Nume { get; set; }
-            
-        /// <summary>
-        /// Gets or sets the setting identifier
-        /// </summary>
+
         [DataMember]
         [Column(CanBeNull = false, Name = "Prenume")]
         public string Prenume { get; set; }
-        
-        /// <summary>
-        /// Gets or sets the setting identifier
-        /// </summary>
+
         [DataMember]
         [Column(CanBeNull = false, Name = "Catedra")]
         public string Catedra { get; set; }
-
-        [DisplayName("Nume")]
-        public string FullName
-        {
-            get { return string.Format("{0} {1}", Nume, Prenume); }
-        }
 
         public override int GetId()
         {

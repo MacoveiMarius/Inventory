@@ -119,9 +119,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\CalculatoareModel.cs" />
+    <Compile Include="Models\GestiuniModel.cs" />
     <Compile Include="Models\InventareModels.cs" />
+    <Compile Include="Models\LaboratoareModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\SurseModel.cs" />
+    <Compile Include="Models\TipuriModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +225,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Inventare\DisplayTemplates\" />
+    <Folder Include="Views\Inventare\EditorTemplates\" />
+    <Folder Include="Views\Shared\DisplayTemplates\" />
+    <Folder Include="Views\Shared\EditorTemplates\" />
     <Folder Include="Views\Surse\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>

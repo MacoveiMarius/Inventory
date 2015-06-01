@@ -18,9 +18,11 @@ namespace InventorySolution.Controllers
         {
             InventareModel model = new InventareModel()
             {
-                Inventare = SVC.Inventare.GetInventare(true)
-                //.OrderBy(i => i.Denumire).ToList()
-                ,
+                Inventare = SVC.Inventare.GetInventare(true).Select(i => 
+                new InventarModel
+                {
+                    
+                }).ToList(),
                 Message = TempData["InventareMessage"] as MessageModel
             };
             
@@ -48,11 +50,11 @@ namespace InventorySolution.Controllers
             InventarModel model = new InventarModel()
             {
                 InventarId = inventar.Id,
-                Tip = inventar.TipEntity ?? new Tip(),
                 Denumire = inventar.Denumire,
-                Gestiune = inventar.GestiuneEntity ?? new Gestiune(),
-                Laborator = inventar.LaboratorEntity ?? new Laborator(),
-                Sursa = inventar.SursaEntity ?? new Sursa(),
+                //Tip = inventar.TipEntity ?? new Tip(),
+                //Gestiune = inventar.GestiuneEntity ?? new Gestiune(),
+                //Laborator = inventar.LaboratorEntity ?? new Laborator(),
+                //Sursa = inventar.SursaEntity ?? new Sursa(),
                 Natura = inventar.Natura,
 
                 AnPFun = inventar.AnPFun,
@@ -78,7 +80,8 @@ namespace InventorySolution.Controllers
             var model = new NewInventar
             {
                 Message = TempData["InventarMessage"] as MessageModel,
-                Inventar = new Inventar(),
+                Inventar = new InventarModel(),
+                Calculator =  new CalculatorModel(),
                 SelectedGestiuneId =  -1,
                 Gestiuni = SVC.Gestiuni.GetGestiuni(),
                 SelectedLaboratorId =  -1,
@@ -92,7 +95,6 @@ namespace InventorySolution.Controllers
             if (gestiuneId.HasValue)
             {
                 var gestiune = SVC.Gestiuni.GetGestiune(gestiuneId.Value);
-
             }
 
             return View();
