@@ -82,16 +82,16 @@ namespace InventorySolution.Models
         public InventarModel Inventar { get; set; }
 
         public  int SelectedGestiuneId { get; set; }
-        public List<Gestiune> Gestiuni { get; set; }
+        public List<GestiuneModel> Gestiuni { get; set; }
  
         public int SelectedLaboratorId { get; set; }
-        public List<Laborator> Laboratoare { get; set; } 
+        public List<LaboratorModel> Laboratoare { get; set; } 
 
         public int SelectedTipId { get; set; }
-        public List<Tip> Tipuri { get; set; } 
+        public List<TipModel> Tipuri { get; set; } 
 
         public int SelectedSursaId { get; set; }
-        public List<Sursa> Surse { get; set; } 
+        public List<SursaModel> Surse { get; set; } 
 
         public CalculatorModel Calculator { get; set; }
 

@@ -222,6 +222,8 @@
     <Content Include="Views\Shared\PageMessage.cshtml" />
     <Content Include="Views\Surse\Index.cshtml" />
     <Content Include="Views\Surse\EditorTemplates\SursaEditor.cshtml" />
+    <Content Include="Views\Inventare\Create.cshtml" />
+    <Content Include="Views\Calculatoare\EditorTemplates\CalculatorEditor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
