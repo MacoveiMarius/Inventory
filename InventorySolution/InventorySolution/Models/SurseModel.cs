@@ -21,7 +21,7 @@ namespace InventorySolution.Models
     public class SursaModel
     {
         [Display(Name = "Nr. Crt.")]
-        public int SursaId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [Display(Name = "Nume")]

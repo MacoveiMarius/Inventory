@@ -27,7 +27,7 @@ namespace InventorySolution.Controllers
                 Surse = SurseService.GetSurse()
                     .Select(s => new SursaModel
                     {
-                        SursaId = s.Id,
+                        Id = s.Id,
                         Nume = s.Nume
                     }).ToList()
             };
@@ -61,7 +61,7 @@ namespace InventorySolution.Controllers
             sursa = sursa ?? new Sursa();
             return PartialView("EditorTemplates/SursaEditor", new SursaModel()
             {
-                SursaId = sursa.Id,
+                Id = sursa.Id,
                 Nume =  sursa.Nume
             });
         }
