@@ -30,7 +30,7 @@ namespace Inventory.Core
             get { return GetTable<Sursa>(); }
         }
 
-        public Table<Inventar> InvetareTable
+        public Table<Inventar> InventareTable
         {
             get { return GetTable<Inventar>(); }
         }

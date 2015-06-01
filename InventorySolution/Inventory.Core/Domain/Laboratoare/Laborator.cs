@@ -48,7 +48,7 @@ namespace Inventory.Core.Domain
         /// </summary>
         [DataMember]
         [Column(IsDbGenerated = true, IsPrimaryKey = true, Name = "Nr_crt")]
-        public short Id { get; set; } 
+        public int Id { get; set; } 
         
         /// <summary>
         /// Gets or sets the setting identifier
@@ -56,8 +56,8 @@ namespace Inventory.Core.Domain
         [DataMember]
         [Column(CanBeNull = false, Name = "Laborator")]
         public string Nume { get; set; }
-         
-        public override short GetId()
+
+        public override int GetId()
         {
             return Id;
         }

@@ -32,7 +32,7 @@ namespace InventorySolution.Controllers
 
         public ActionResult Details(int id)
         {
-            var inventar = SVC.Inventare.GetInventarById(id);
+            var inventar = SVC.Inventare.GetInventar(id);
             if (inventar == null)
             {
                 TempData["InventareMessage"] = new MessageModel
@@ -72,9 +72,29 @@ namespace InventorySolution.Controllers
 
         //
         // GET: /Inventare/Create
-
-        public ActionResult Create()
+        [HttpGet]
+        public ActionResult Create(int? gestiuneId)
         {
+            var model = new NewInventar
+            {
+                Message = TempData["InventarMessage"] as MessageModel,
+                Inventar = new Inventar(),
+                SelectedGestiuneId =  -1,
+                Gestiuni = SVC.Gestiuni.GetGestiuni(),
+                SelectedLaboratorId =  -1,
+                Laboratoare = SVC.Laboratoare.GetLaboratoare(),
+                SelectedSursaId = -1,
+                Surse = SVC.Surse.GetSurse(),
+                SelectedTipId = -1,
+                Tipuri = SVC.Tipuri.GetTipuri(),
+            };
+
+            if (gestiuneId.HasValue)
+            {
+                var gestiune = SVC.Gestiuni.GetGestiune(gestiuneId.Value);
+
+            }
+
             return View();
         }
 
@@ -101,7 +121,7 @@ namespace InventorySolution.Controllers
 
         public ActionResult Edit(int id)
         {
-            var inventar = SVC.Inventare.GetInventarById(id);
+            var inventar = SVC.Inventare.GetInventar(id);
             if (inventar == null)
             {
                 TempData["InventareMessage"] = new MessageModel

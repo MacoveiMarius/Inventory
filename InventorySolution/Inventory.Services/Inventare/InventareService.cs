@@ -16,14 +16,19 @@ namespace Inventory.Services
             _inventareAccessor = new InventareAccessor(strDbConnectionString);
         }
 
-        public Inventar GetInventarById(int inventarId)
+        public Inventar GetInventar(int inventarId)
         {
-            return _inventareAccessor.GetInventarById(inventarId);
+            return _inventareAccessor.GetInventar(inventarId);
         }
 
         public List<Inventar> GetInventare(bool loadFullData = false)
         {
             return _inventareAccessor.GetInventare(loadFullData);
+        }
+
+        public int DeleteInventareBySursa(int sursaId)
+        {
+            return _inventareAccessor.DeleteInventareBySursa(sursaId);
         }
     }
 }

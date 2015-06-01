@@ -57,7 +57,7 @@
     <Compile Include="Laboratoare\LaboratoareService.cs" />
     <Compile Include="Laboratoare\Database\LaboratoareAccessor.cs" />
     <Compile Include="Laboratoare\Interfaces\ILaboratoare.cs" />
-    <Compile Include="Gestiuni\CalculatoareService.cs" />
+    <Compile Include="Gestiuni\GestiuniService.cs" />
     <Compile Include="Gestiuni\Database\GestiuniAccessor.cs" />
     <Compile Include="Gestiuni\Interfaces\IGestiuni.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

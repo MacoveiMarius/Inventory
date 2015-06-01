@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +14,14 @@ namespace Inventory.Core
     public abstract class BaseEntity
     {
         /// <summary>
-        /// The id is needed in various places, however, keeping the Id field in the BaseEntity 
-        /// causes some problems with Linq2SQL so we use this instead.
+        /// SQL Server Code for Unique_Index/Primary_key Violation/Constriant Violation
         /// </summary>
-        /// <returns></returns>
-        public abstract short GetId();
+        public const int UNIQUE_INDEX_VIOLATION = 2627;
+
+        public const int FOREIGN_KEY_VIOLATION = 547;
+        public const int CANNOT_INSERT_DUPLICATE_KEY_ROW = 2601;
+
+        public abstract int GetId();
 
         private static bool IsTransient(BaseEntity obj)
         {
@@ -78,6 +82,25 @@ namespace Inventory.Core
                 }
             }
             return entitySet;
+        }
+        public static void ShallowCopy<T>(T source, T destination) where T : new()
+        {
+            PropertyInfo[] destinationProperties = destination.GetType().GetProperties();
+            foreach (PropertyInfo destinationPI in destinationProperties)
+            {
+                if (destinationPI.CanWrite)
+                {
+                    PropertyInfo sourcePI = source.GetType().GetProperty(destinationPI.Name);
+
+                    if (!sourcePI.Name.Contains("Entity") && sourcePI.GetIndexParameters().Length <= 0)
+                    //don't set the entity relationship members or indexers
+                    {
+                        destinationPI.SetValue(destination,
+                            sourcePI.GetValue(source, null),
+                            null);
+                    }
+                }
+            }
         }
     }
 }

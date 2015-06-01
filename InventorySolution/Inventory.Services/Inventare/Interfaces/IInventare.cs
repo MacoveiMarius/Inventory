@@ -12,6 +12,8 @@ namespace Inventory.Services
     {
         List<Inventar> GetInventare(bool loadFullData = false);
 
-        Inventar GetInventarById(int id);
+        Inventar GetInventar(int id);
+
+        int DeleteInventareBySursa(int sursaId);
     }
 }

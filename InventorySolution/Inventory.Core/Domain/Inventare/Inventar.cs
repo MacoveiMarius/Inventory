@@ -35,7 +35,7 @@ namespace Inventory.Core.Domain
                 }
                 else
                 {
-                    SursaId = default(short);
+                    SursaId = default(int);
                 }
             }
         }
@@ -55,7 +55,7 @@ namespace Inventory.Core.Domain
                 }
                 else
                 {
-                    LaboratorId = default(short);
+                    LaboratorId = default(int);
                 }
             }
         }
@@ -75,7 +75,7 @@ namespace Inventory.Core.Domain
                 }
                 else
                 {
-                    GestiuneId = default(short);
+                    GestiuneId = default(int);
                 }
             }
         }
@@ -95,7 +95,7 @@ namespace Inventory.Core.Domain
                 }
                 else
                 {
-                    TipId = default(short);
+                    TipId = default(int);
                 }
             }
         }
@@ -105,7 +105,7 @@ namespace Inventory.Core.Domain
         /// </summary>
         [DataMember]
         [Column(IsDbGenerated = true, IsPrimaryKey = true, Name = "Nr_crt")]
-        public short Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the setting identifier
@@ -119,14 +119,14 @@ namespace Inventory.Core.Domain
         /// </summary>
         [DataMember]
         [Column(CanBeNull = true, Name = "Gestiune")]
-        public short? GestiuneId { get; set; }
+        public int? GestiuneId { get; set; }
 
         /// <summary>
         /// Gets or sets the setting identifier
         /// </summary>
         [DataMember]
         [Column(CanBeNull = true, Name = "Lab")]
-        public short? LaboratorId { get; set; }
+        public int? LaboratorId { get; set; }
 
         /// <summary>
         /// Gets or sets the setting identifier
@@ -182,7 +182,7 @@ namespace Inventory.Core.Domain
         /// </summary>
         [DataMember]
         [Column(CanBeNull = true, Name = "Tip")]
-        public short? TipId { get; set; }
+        public int? TipId { get; set; }
 
         /// <summary>
         /// Gets or sets the setting identifier
@@ -196,7 +196,7 @@ namespace Inventory.Core.Domain
         /// </summary>
         [DataMember]
         [Column(CanBeNull = true, Name = "Sursa")]
-        public short? SursaId { get; set; }
+        public int? SursaId { get; set; }
 
         /// <summary>
         /// Gets or sets the setting identifier
@@ -204,9 +204,9 @@ namespace Inventory.Core.Domain
         [DataMember]
         [Column(CanBeNull = false, Name = "Mentiuni")]
         public string Mentiuni { get; set; }
-        
 
-        public override short GetId()
+
+        public override int GetId()
         {
             return Id;
         }

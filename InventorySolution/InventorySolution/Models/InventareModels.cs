@@ -13,7 +13,7 @@ namespace InventorySolution.Models
     {
         [Required]
         [Display(Name = "Nr. ctr.")]
-        public short InventarId { get; set; }
+        public int InventarId { get; set; }
 
         [Required]
         [Display(Name = "Denumire")]
@@ -76,4 +76,23 @@ namespace InventorySolution.Models
 
         public MessageModel Message { get; set; }
     }
+
+    public class NewInventar
+    {
+        public Inventar Inventar { get; set; }
+
+        public  int SelectedGestiuneId { get; set; }
+        public List<Gestiune> Gestiuni { get; set; }
+ 
+        public int SelectedLaboratorId { get; set; }
+        public List<Laborator> Laboratoare { get; set; } 
+
+        public int SelectedTipId { get; set; }
+        public List<Tip> Tipuri { get; set; } 
+
+        public int SelectedSursaId { get; set; }
+        public List<Sursa> Surse { get; set; } 
+
+        public MessageModel Message { get; set; }
+    } 
 }

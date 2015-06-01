@@ -156,7 +156,7 @@ namespace Inventory.Core.Domain
         [Column(CanBeNull = false, Name = "Modem")]
         public string Modem { get; set; }
 
-        public override short GetId()
+        public override int GetId()
         {
             return Id;
         }

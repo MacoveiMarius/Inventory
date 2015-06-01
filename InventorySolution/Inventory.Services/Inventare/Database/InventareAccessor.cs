@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Inventory.Core.Domain;
 using Inventory.Core;
 using System.Data.Linq;
+using System.Data.SqlClient;
 using System.Runtime.Remoting.Contexts;
 
 namespace Inventory.Services
@@ -20,16 +21,12 @@ namespace Inventory.Services
             _strDbConnectionString = strDbConnectionString;
         }
 
-        public Inventar GetInventarById(int inventarId)
+        public Inventar GetInventar(int inventarId)
         {
             using (var context = InventareDb.Create(_strDbConnectionString.ToString()))
             {
                 PreLoadData(context);
                 var result = (from i in context.InventareTable
-                    //join g in context.GestiuniTable on i.GestiuneId equals g.Id
-                    //join l in context.LaboratoareTable on i.LaboratorId equals l.Id
-                    //join s in context.SurseTable on i.SursaId equals s.Id
-                    //join t in context.TipuriTable on i.TipId equals t.Id
                     where i.Id == inventarId
                     select i).SingleOrDefault();
 
@@ -45,6 +42,38 @@ namespace Inventory.Services
                 var result = (from i in context.InventareTable
                               select i).ToList<Inventar>();
                 return result;
+            }
+        }
+
+        public int DeleteInventareBySursa(int sursaId)
+        {
+            using (var context = InventareDb.Create(_strDbConnectionString.ToString()))
+            {
+                try
+                {
+                    int deletedInventareCount = (int) OperationResult.Error;
+                    var inventare = from inventar in context.InventareTable
+                        where inventar.SursaId == sursaId
+                        select inventar;
+
+                    if (inventare == null)
+                    {
+                        return (int) OperationResult.ErrorItemNotFound;
+                    }
+                    context.InventareTable.DeleteAllOnSubmit(inventare);
+                    context.SubmitChanges();
+                    deletedInventareCount = inventare.Count();
+
+                    return deletedInventareCount;
+                }
+                catch (SqlException sqlEx)
+                {
+                    if (sqlEx.Number == InventareDb.UNIQUE_INDEX_VIOLATION)
+                    {
+                        return (int) OperationResult.ErrorDuplicateItem;
+                    }
+                    return (int) OperationResult.Error;
+                }
             }
         }
 

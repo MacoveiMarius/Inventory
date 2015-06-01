@@ -1,0 +1,25 @@
+﻿@model InventorySolution.Models.SursaModel
+
+<div class="sursa row list-group-item">
+    <div class="col-md-3">
+        <div class="col-sm-2 sursa-id">
+            @string.Format("#{0}", Model.Id)
+        </div>
+        <div class="col-sm-10">
+            <span class="editable editable-click sursa-body"
+           id="@string.Format("sursa_{0}", Model.Id)"
+           data-type="text"
+           data-title="Introduceti numele sursei"
+           data-pk="@Model.Id"
+           data-value="@Model.Nume">@Model.Nume</span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <a href="#" style="float: left" class="edit-sursa-button btn-sm btn-default input-sm">
+            <i class="glyphicon glyphicon-pencil"></i>
+        </a>
+        <a data-href="@Url.Action("Delete", "Surse", new {id = Model.Id})" style="float: left" class="btn btn-sm btn-danger input-sm" data-toggle="modal" data-target="#confirm-delete">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+</div>

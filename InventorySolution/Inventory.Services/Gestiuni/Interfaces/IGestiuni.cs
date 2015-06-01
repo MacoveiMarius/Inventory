@@ -10,5 +10,7 @@ namespace Inventory.Services
     public interface IGestiuni
     {
         List<Gestiune> GetGestiuni();
+
+        Gestiune GetGestiune(int id);
     }
 }

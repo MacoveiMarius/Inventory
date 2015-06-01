@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Inventory.Core.Domain;
 using Inventory.Services;
 using InventorySolution.Models;
 
@@ -12,14 +13,18 @@ namespace InventorySolution.Controllers
 {
     public class SurseController : Controller
     {
+        private ISurse SurseService
+        {
+            get { return SVC.Surse; }
+        }
+
         //
         // GET: /Surse/
-
         public ActionResult Index()
         {
             SurseViewModel model = new SurseViewModel()
             {
-                Surse = SVC.Surse.GetSurse()
+                Surse = SurseService.GetSurse()
                     .Select(s => new SursaModel
                     {
                         Id = s.Id,
@@ -32,8 +37,12 @@ namespace InventorySolution.Controllers
                 model.Message = new MessageModel
                 {
                     Message = new HtmlString(string.Format("Nu exista surse.\n Adaugati {0}",
-                        "aici".ToLink(new UrlHelper(Request.RequestContext).Action("Create", "Surse")))),
-                        Icon = MessageIcon.WarningIcon,
+                        "aici".ToLink(new UrlHelper(Request.RequestContext).Action("Create", "Surse"),
+                            new Dictionary<string, string>()
+                            {
+                                {"class", "add-custom-field"}
+                            }))),
+                    Icon = MessageIcon.WarningIcon,
                     Type = MessageType.Warning
                 };
             }
@@ -41,89 +50,68 @@ namespace InventorySolution.Controllers
         }
 
         //
-        // GET: /Surse/Details/5
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //
         // GET: /Surse/Create
-
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            return View();
-        } 
-
-        //
-        // POST: /Surse/Create
+            Sursa sursa = null;
+            if (id.HasValue)
+            {
+                sursa = SurseService.GetSursa(id.Value);
+            }
+            sursa = sursa ?? new Sursa();
+            return PartialView("EditorTemplates/SursaEditor", new SursaModel()
+            {
+                Id = sursa.Id,
+                Nume =  sursa.Nume
+            });
+        }
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult AddOrUpdateSursa(int? id)   //id-ul este pk din form
         {
+            ServiceResult serviceResult = new ServiceResult();
+            var msg = String.Empty;
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                int sursaId;
+                int.TryParse(Request.Form["pk"], out sursaId);
+                string value = Request.Form["value"];
+                var sursa = new Sursa
+                {
+                    Id = sursaId,
+                    Nume = value
+                };
+                if (sursaId > 0)
+                {
+                    //update sursa
+                    serviceResult = SurseService.UpdateSursa(sursa);
+                    msg = string.Format("Sursa #{0}(Nume = {1}) acutalizata cu succes", sursa.Id, sursa.Nume);
+                }
+                else
+                {
+                    //adauga sursa
+                    serviceResult = SurseService.AddSursa(sursa);
+                    msg = string.Format("Sursa #{0}(Nume = {1}) adaugata cu succes", sursa.Id, sursa.Nume);
+                }
             }
             catch
             {
-                return View();
+                msg = string.Format("Am intampitan o eroarea");
             }
-        }
-        
-        //
-        // GET: /Surse/Edit/5
- 
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
 
-        //
-        // POST: /Surse/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
+            if (serviceResult.OperationResult < OperationResult.Success)
             {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
+                msg = string.Format("Am intampitan o eroarea");
             }
-            catch
-            {
-                return View();
-            }
+            return Json(new {Id = serviceResult.EntityId, Message = msg }, JsonRequestBehavior.DenyGet);
         }
 
         //
         // GET: /Surse/Delete/5
- 
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        //
-        // POST: /Surse/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            SurseService.DeleteSursa(id);
+            return RedirectToAction("Index");
         }
     }
 }

@@ -27,5 +27,16 @@ namespace Inventory.Services
                 return result;
             }
         }
+
+        public Gestiune GetGestiune(int id)
+        {
+            using (var context = GestiuniDb.Create(_strDbConnectionString.ToString()))
+            {
+                var result = (from t in context.GestiuniTable
+                              where t.Id == id
+                              select t).SingleOrDefault();
+                return result;
+            }
+        }
     }
 }

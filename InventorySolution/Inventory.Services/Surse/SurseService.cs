@@ -20,5 +20,25 @@ namespace Inventory.Services
         {
             return _surseAccessor.GetSurse(loadFullData);
         }
+
+        public Sursa GetSursa(int id)
+        {
+            return _surseAccessor.GetSursa(id);
+        }
+
+        public ServiceResult AddSursa(Sursa sursa)
+        {
+            return _surseAccessor.AddSursa(sursa);
+        }
+
+        public ServiceResult UpdateSursa(Sursa updateSursa)
+        {
+            return _surseAccessor.UpdateSursa(updateSursa);
+        }
+
+        public void DeleteSursa(int id)
+        {
+            _surseAccessor.DeleteSursa(id);
+        }
     }
 }
