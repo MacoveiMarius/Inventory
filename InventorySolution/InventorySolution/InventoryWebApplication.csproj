@@ -222,14 +222,19 @@
     <Content Include="Views\Shared\PageMessage.cshtml" />
     <Content Include="Views\Surse\Index.cshtml" />
     <Content Include="Views\Surse\EditorTemplates\SursaEditor.cshtml" />
+    <Content Include="Views\Tipuri\EditorTemplates\TipEditor.cshtml" />
+    <Content Include="Views\Tipuri\Index.cshtml" />
+    <Content Include="Views\Laboratoare\EditorTemplates\LaboratorEditor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Inventare\DisplayTemplates\" />
     <Folder Include="Views\Inventare\EditorTemplates\" />
+    <Folder Include="Views\Laboratoare\DisplayTemplates\" />
     <Folder Include="Views\Shared\DisplayTemplates\" />
     <Folder Include="Views\Shared\EditorTemplates\" />
     <Folder Include="Views\Surse\DisplayTemplates\" />
+    <Folder Include="Views\Tipuri\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

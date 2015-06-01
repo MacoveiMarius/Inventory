@@ -1,0 +1,92 @@
+﻿@using System.Web.Optimization
+@model InventorySolution.Models.TipuriViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+@section CSS
+{
+    @Styles.Render("~/xeditable")
+}
+@section JS
+{
+    @Scripts.Render("~/scripts/xeditable")
+    @Scripts.Render("~/scripts/surse")
+    <script type="text/javascript">
+        $(function() {
+            $.Surse.MakeEditables();
+
+            $('#confirm-delete').on('show.bs.modal', function(e) {
+                $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+
+                $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
+            });
+            
+            $(document).on({
+                /*handle mouseclick*/
+                click: function() {
+                    var $obj = $(this);
+                    $.ajax({
+                        type: "GET",
+                        cache: false,
+                        url: $obj.attr("href"),
+                        data: {},
+                        success: function(data) {
+                            $obj.closest('#main').find('.list-group:first').append(data);
+                            $.Surse.MakeEditableLastAddedItem();
+                        }
+                    });
+                    return false;
+                }
+            }, ".add-custom-field");
+        });
+
+        $(function () {
+            $.fn.editable.defaults.mode = 'inline';
+
+            $('.example').editable({
+                type: 'text',
+                pk: 1,
+                url: 'post.php',
+                title: 'Enter example'
+            });
+        });
+    </script>
+}
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">
+        Surse
+        <a href="@Url.Action("Create", "Surse")" class="btn-sm btn-primary add-custom-field"><i class="glyphicon glyphicon-plus"></i></a>
+    </div>
+    <div class="panel-body">
+        <!-- List group -->
+        <div class="list-group">
+            @foreach (var tip in Model.Surse)
+            {
+                @Html.EditorFor(m => tip, "TipEditor")
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+            </div>
+            <div class="modal-body">
+                <p>You are about to delete one track, this procedure is irreversible.</p>
+                <p>Do you want to proceed?</p>
+                <p class="debug-url"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger btn-ok">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+<h2>Index</h2>

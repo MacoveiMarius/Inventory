@@ -12,3 +12,10 @@ D:\GitHub\Inventory\InventorySolution\Inventory.Services\bin\Debug\Inventory.Cor
 D:\GitHub\Inventory\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.csprojResolveAssemblyReference.cache
 D:\GitHub\Inventory\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.dll
 D:\GitHub\Inventory\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.pdb
+J:\Documents\Inventory\InventorySolution\Inventory.Services\bin\Debug\Inventory.Services.dll
+J:\Documents\Inventory\InventorySolution\Inventory.Services\bin\Debug\Inventory.Services.pdb
+J:\Documents\Inventory\InventorySolution\Inventory.Services\bin\Debug\Inventory.Core.dll
+J:\Documents\Inventory\InventorySolution\Inventory.Services\bin\Debug\Inventory.Core.pdb
+J:\Documents\Inventory\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.csprojResolveAssemblyReference.cache
+J:\Documents\Inventory\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.dll
+J:\Documents\Inventory\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.pdb

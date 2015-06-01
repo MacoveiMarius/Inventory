@@ -7,6 +7,18 @@ using System.Web;
 
 namespace InventorySolution.Models
 {
+    public class LaboratorViewModel
+    {
+        public List<LaboratorModel> Laboratoare { get; set; }
+
+        public LaboratorViewModel()
+        {
+            Laboratoare = new List<LaboratorModel>();
+        }
+
+        public MessageModel Message { get; set; }
+    }
+
     public class LaboratorModel
     {
         [DisplayName("Nr. crt.")]
