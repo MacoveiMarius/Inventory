@@ -1,0 +1,109 @@
+﻿@using System.Collections
+@using Microsoft.Ajax.Utilities
+@model InventorySolution.Models.NewInventarDataModel
+
+@{
+    ViewBag.Title = "InventarEditor";
+}
+
+<div class="row">
+    <!-- left -->
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Denumire)
+                <i class="red_star">*</i>
+                @Html.TextBoxFor(m => m.Denumire, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Gestiune.FullName)
+                <i class="red_star">*</i>
+                @Html.DropDownListFor(m => m.SelectedGestiuneId, new SelectList(Model.Gestiuni as IEnumerable, "Id", "FullName", Model.SelectedGestiuneId), new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Tip)
+                <i class="red_star">*</i>
+                @Html.DropDownListFor(m => m.SelectedTipId, new SelectList(Model.Tipuri as IEnumerable, "Id", "Nume", Model.SelectedTipId), new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Laborator)
+                <i class="red_star">*</i>
+                @Html.DropDownListFor(m => m.SelectedLaboratorId, new SelectList(Model.Laboratoare as IEnumerable, "Id", "Nume", Model.SelectedLaboratorId), new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Sursa)
+                <i class="red_star">*</i>
+                @Html.DropDownListFor(m => m.SelectedSursaId, new SelectList(Model.Surse as IEnumerable, "Id", "Nume", Model.SelectedSursaId), new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Natura)
+                <i class="red_star">*</i>
+                @Html.TextBoxFor(m => m.Natura, new {@class = "form-control"})
+            </div>
+        </div>
+    </div>
+
+    <!-- right -->
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.AnPFun)
+                @Html.TextBoxFor(m => m.AnPFun, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.PVerbal)
+                @Html.TextBoxFor(m => m.PVerbal, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.NrInventar)
+                @Html.TextBoxFor(m => m.NrInventar, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Serie)
+                @Html.TextBoxFor(m => m.Serie, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                @Html.LabelFor(m => m.Pret)
+                @Html.TextBoxFor(m => m.Pret, new {@class = "form-control"})
+            </div>
+            @*</div>
+                        <div class="row">*@
+            <div class="col-md-3">
+                @Html.LabelFor(m => m.Cantitate)
+                @Html.TextBoxFor(m => m.Cantitate, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Valoare)
+                @Html.TextBoxFor(m => m.Valoare, new {@class = "form-control", @readonly = "readonly"})
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- mentiuni -->
+<div class="row">
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.Mentiuni)
+        @Html.TextAreaFor(m => m.Mentiuni, new {@class = "form-control", @rows = "5"})
+    </div>
+</div>
