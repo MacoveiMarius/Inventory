@@ -9,7 +9,7 @@ using System.Web.Security;
 namespace InventorySolution.Models
 {
 
-    public class InventarModel
+    public class InventarDataModel
     {
         [Required]
         [Display(Name = "Nr. ctr.")]
@@ -19,13 +19,11 @@ namespace InventorySolution.Models
         [Display(Name = "Denumire")]
         public string Denumire { get; set; }
 
-        [Required]
         [Display(Name = "Gestiune")]
-        public GestiuneModel Gestiune { get; set; }
+        public Gestiune Gestiune { get; set; }
 
-        [Required]
         [Display(Name = "Laborator")]
-        public LaboratorModel Laborator { get; set; }
+        public Laborator Laborator { get; set; }
 
         [Display(Name = "Perioada functionalitate")]
         public string AnPFun { get; set; }
@@ -48,16 +46,14 @@ namespace InventorySolution.Models
         [Display(Name = "Serie")]
         public string Serie { get; set; }
 
-        [Required]
         [Display(Name = "Tip")]
-        public TipModel Tip { get; set; }
+        public Tip Tip { get; set; }
 
         [Display(Name = "Natura")]
         public string Natura { get; set; }
 
-        [Required]
         [Display(Name = "Sursa")]
-        public SursaModel Sursa { get; set; }
+        public Sursa Sursa { get; set; }
 
         [Display(Name = "Mentiuni")]
         public string Mentiuni { get; set; }
@@ -67,32 +63,38 @@ namespace InventorySolution.Models
 
     public class InventareModel
     {
-        public List<InventarModel> Inventare { get; set; }
+        public List<InventarDataModel> Inventare { get; set; }
 
         public InventareModel()
         {
-            Inventare = new List<InventarModel>();
+            Inventare = new List<InventarDataModel>();
         }
 
         public MessageModel Message { get; set; }
     }
 
-    public class NewInventar
+    public class NewInventarDataModel : InventarDataModel
     {
-        public InventarModel Inventar { get; set; }
-
-        public  int SelectedGestiuneId { get; set; }
+        [Required]
+        public int SelectedGestiuneId { get; set; }
         public List<Gestiune> Gestiuni { get; set; }
- 
+
+        [Required]
         public int SelectedLaboratorId { get; set; }
-        public List<Laborator> Laboratoare { get; set; } 
+        public List<Laborator> Laboratoare { get; set; }
 
+        [Required]
         public int SelectedTipId { get; set; }
-        public List<Tip> Tipuri { get; set; } 
+        public List<Tip> Tipuri { get; set; }
 
+        [Required]
         public int SelectedSursaId { get; set; }
         public List<Sursa> Surse { get; set; } 
+    }
 
+    public class NewInventarModel
+    {
+        public NewInventarDataModel Inventar { get; set; }
         public CalculatorModel Calculator { get; set; }
 
         public MessageModel Message { get; set; }
