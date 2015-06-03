@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Inventory.Core.Domain;
@@ -19,13 +18,14 @@ namespace InventorySolution.Controllers
         {
             InventareModel model = new InventareModel()
             {
-                Inventare = SVC.Inventare.GetInventare(true).Select(i =>
-                    new InventarDataModel
-                    {
-                    }).ToList(),
+                Inventare = SVC.Inventare.GetInventare(true).Select(i => 
+                new InventarModel
+                {
+                    
+                }).ToList(),
                 Message = TempData["InventareMessage"] as MessageModel
             };
-
+            
             return View(model);
         }
 
@@ -47,7 +47,7 @@ namespace InventorySolution.Controllers
                 return RedirectToAction("Index");
             }
 
-            InventarDataModel model = new InventarDataModel()
+            InventarModel model = new InventarModel()
             {
                 InventarId = inventar.Id,
                 Denumire = inventar.Denumire,
@@ -56,6 +56,7 @@ namespace InventorySolution.Controllers
                 //Laborator = inventar.LaboratorEntity ?? new Laborator(),
                 //Sursa = inventar.SursaEntity ?? new Sursa(),
                 Natura = inventar.Natura,
+
                 AnPFun = inventar.AnPFun,
                 PVerbal = inventar.PVerbal,
                 NrInventar = inventar.NrInventar,
@@ -63,7 +64,9 @@ namespace InventorySolution.Controllers
                 Pret = inventar.Pret,
                 Valoare = inventar.Valoare,
                 Cantitate = inventar.Cantitate,
+
                 Mentiuni = inventar.Mentiuni,
+
                 Message = TempData["InventareMessage"] as MessageModel
             };
             return View("Inventar", model);
@@ -74,167 +77,45 @@ namespace InventorySolution.Controllers
         [HttpGet]
         public ActionResult Create(int? gestiuneId)
         {
-            var gestiuni = SVC.Gestiuni.GetGestiuni();
-            var laboratoare = SVC.Laboratoare.GetLaboratoare();
-            var surse = SVC.Surse.GetSurse();
-            var tipuri = SVC.Tipuri.GetTipuri();
-            
-            var model = new NewInventarModel
+            var model = new NewInventar
             {
                 Message = TempData["InventarMessage"] as MessageModel,
-                Inventar = new NewInventarDataModel()
-                {
-                    SelectedGestiuneId = -1,
-                    Gestiuni = gestiuni,
-                    SelectedLaboratorId = -1,
-                    Laboratoare = laboratoare,
-                    SelectedSursaId = -1,
-                    Surse = surse,
-                    SelectedTipId = -1,
-                    Tipuri = tipuri
-                },
-                Calculator = new CalculatorModel(),
+                Inventar = new InventarModel(),
+                Calculator =  new CalculatorModel(),
+                SelectedGestiuneId =  -1,
+                Gestiuni = SVC.Gestiuni.GetGestiuni(),
+                SelectedLaboratorId =  -1,
+                Laboratoare = SVC.Laboratoare.GetLaboratoare(),
+                SelectedSursaId = -1,
+                Surse = SVC.Surse.GetSurse(),
+                SelectedTipId = -1,
+                Tipuri = SVC.Tipuri.GetTipuri(),
             };
-
-            if (gestiuni == null || gestiuni.Count <= 0
-                || laboratoare == null || laboratoare.Count <= 0
-                || surse == null || surse.Count <= 0
-                || tipuri == null || tipuri.Count <= 0)
-            {
-                StringBuilder msg = new StringBuilder();
-                if (gestiuni == null || gestiuni.Count <= 0)
-                {
-                    msg.AppendFormat("Nu exista gestiuni.");
-                }
-                if (laboratoare == null || laboratoare.Count <= 0)
-                {
-                    msg.AppendFormat("Nu exista laboratoare.");
-                }
-
-                if (surse == null || surse.Count <= 0)
-                {
-                    msg.AppendFormat("Nu exista surse.");
-                }
-
-                if (tipuri == null || tipuri.Count <= 0)
-                {
-                    msg.AppendFormat("Nu exista tipuri.");
-                }
-
-                model.Message = new MessageModel
-                {
-                    Message = new HtmlString(msg.ToString()),
-                    Type = MessageType.Warning,
-                    Icon = MessageIcon.ErrorIcon
-                };
-            }
 
             if (gestiuneId.HasValue)
             {
                 var gestiune = SVC.Gestiuni.GetGestiune(gestiuneId.Value);
             }
 
-            return View(model);
+            return View();
         }
 
         //
         // POST: /Inventare/Create
 
         [HttpPost]
-        public ActionResult Create(NewInventarModel model, string save, string saveAndNew)
+        public ActionResult Create(FormCollection collection)
         {
-            var error = new System.Collections.ArrayList();
-            for (int i = 0; i < ModelState.Values.Count; i++)
+            try
             {
-                if (ModelState.Values.ElementAt(i).Errors.Count > 0)
-                {
-                    error.Add( ModelState.ElementAt(i));
-                }
-            }
+                // TODO: Add insert logic here
 
-            if (ModelState.IsValid)
+                return RedirectToAction("Index");
+            }
+            catch
             {
-                try
-                {
-                    // TODO: Add insert logic here
-                    MessageModel message = null;
-
-                    TempData["InventareMessage"] = message;
-
-                    if (save != null)
-                    {
-                        return RedirectToAction("Details", new {id = model.Inventar.InventarId});
-                    }
-                    else if (saveAndNew != null)
-                    {
-                        return RedirectToActionPermanent("Create");
-                    }
-                    else
-                    {
-                        return RedirectToActionPermanent("Index");
-                    }
-                }
-                catch
-                {
-                    TempData["InventareMessage"] = new MessageModel
-                    {
-                        Message = new HtmlString("Am intalnit o eroare"),
-                        Type = MessageType.Error,
-                        Icon = MessageIcon.ErrorIcon
-                    };
-                }
+                return View();
             }
-
-            #region repopulare cu date
-
-            var gestiuni = SVC.Gestiuni.GetGestiuni();
-            var laboratoare = SVC.Laboratoare.GetLaboratoare();
-            var surse = SVC.Surse.GetSurse();
-            var tipuri = SVC.Tipuri.GetTipuri();
-
-            if (gestiuni == null || gestiuni.Count <= 0
-                || laboratoare == null || laboratoare.Count <= 0
-                || surse == null || surse.Count <= 0
-                || tipuri == null || tipuri.Count <= 0)
-            {
-                StringBuilder msg = new StringBuilder();
-                if (gestiuni == null || gestiuni.Count <= 0)
-                {
-                    msg.AppendFormat("Nu exista gestiuni.");
-                }
-                if (laboratoare == null || laboratoare.Count <= 0)
-                {
-                    msg.AppendFormat("Nu exista laboratoare.");
-                }
-
-                if (surse == null || surse.Count <= 0)
-                {
-                    msg.AppendFormat("Nu exista surse.");
-                }
-
-                if (tipuri == null || tipuri.Count <= 0)
-                {
-                    msg.AppendFormat("Nu exista tipuri.");
-                }
-
-                model.Message = new MessageModel
-                {
-                    Message = new HtmlString(msg.ToString()),
-                    Type = MessageType.Warning,
-                    Icon = MessageIcon.ErrorIcon
-                };
-            }
-            else
-            {
-                model.Inventar.Gestiuni = gestiuni;
-                model.Inventar.Laboratoare = laboratoare;
-                model.Inventar.Surse = surse;
-                model.Inventar.Tipuri = tipuri;
-            }
-
-            #endregion
-
-            return View(model);
         }
 
         //

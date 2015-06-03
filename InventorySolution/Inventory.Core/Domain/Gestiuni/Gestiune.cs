@@ -64,16 +64,6 @@ namespace Inventory.Core.Domain
         [Column(CanBeNull = false, Name = "Catedra")]
         public string Catedra { get; set; }
 
-        [DisplayName("Subgestiune")]
-        public string FullName
-        {
-            get
-            {
-                return Nume != null || Prenume != null ?
-                    string.Format("{0} {1}", Nume, Prenume) : string.Empty;
-            }
-        }
-
         public override int GetId()
         {
             return Id;

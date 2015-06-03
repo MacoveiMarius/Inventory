@@ -26,7 +26,7 @@ namespace InventorySolution.Models
         [Display(Name = "CD-ROM")]
         public string CdRom { get; set; }
 
-        [Display(Name = "Floppy")]
+        [Display(Name = "Valoare")]
         public string Floppy { get; set; }
 
         [Display(Name = "Zipp")]

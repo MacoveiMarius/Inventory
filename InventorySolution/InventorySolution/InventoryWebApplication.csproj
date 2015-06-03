@@ -193,7 +193,6 @@
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\npm.js" />
-    <Content Include="Scripts\ui-scripts\inventare.js" />
     <Content Include="Scripts\ui-scripts\surse.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -226,18 +225,14 @@
     <Content Include="Views\Tipuri\EditorTemplates\TipEditor.cshtml" />
     <Content Include="Views\Tipuri\Index.cshtml" />
     <Content Include="Views\Laboratoare\EditorTemplates\LaboratorEditor.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\CalculatorEditor.cshtml" />
-    <Content Include="Views\Inventare\Create.cshtml">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="Views\Inventare\EditorTemplates\InventarEditor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Calculatoare\EditorTemplates\" />
     <Folder Include="Views\Inventare\DisplayTemplates\" />
+    <Folder Include="Views\Inventare\EditorTemplates\" />
     <Folder Include="Views\Laboratoare\DisplayTemplates\" />
     <Folder Include="Views\Shared\DisplayTemplates\" />
+    <Folder Include="Views\Shared\EditorTemplates\" />
     <Folder Include="Views\Surse\DisplayTemplates\" />
     <Folder Include="Views\Tipuri\DisplayTemplates\" />
   </ItemGroup>
