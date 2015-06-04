@@ -1,0 +1,108 @@
+﻿@using Microsoft.Ajax.Utilities
+@model InventorySolution.Models.CalculatorModel
+
+@{
+    ViewBag.Title = "CalculatorEditor";
+}
+
+<div class="row">
+    <!-- calculatoare -->
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Procesor)
+                @Html.TextBoxFor(m => m.Procesor, new {@class = "form-control"})
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Frecventa)
+                @Html.TextBoxFor(m => m.Frecventa, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Hdd)
+                @Html.TextBoxFor(m => m.Hdd, new {@class = "form-control"})
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Ram)
+                @Html.TextBoxFor(m => m.Ram, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.CdRom)
+                @Html.TextBoxFor(m => m.CdRom, new {@class = "form-control"})
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Floppy)
+                @Html.TextBoxFor(m => m.Floppy, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Zipp)
+                @Html.TextBoxFor(m => m.Zipp, new {@class = "form-control"})
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Monitor)
+                @Html.TextBoxFor(m => m.Monitor, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Tastatura)
+                @Html.TextBoxFor(m => m.Tastatura, new {@class = "form-control"})
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Mouse)
+                @Html.TextBoxFor(m => m.Mouse, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.PlacaBaza)
+                @Html.TextBoxFor(m => m.PlacaBaza, new {@class = "form-control"})
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.PlacaVideo)
+                @Html.TextBoxFor(m => m.PlacaVideo, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.CdW)
+                @Html.TextBoxFor(m => m.CdW, new {@class = "form-control"})
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Dvd)
+                @Html.TextBoxFor(m => m.Dvd, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.PlacaRetea)
+                @Html.TextBoxFor(m => m.PlacaRetea, new {@class = "form-control"})
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.TvTuner)
+                @Html.TextBoxFor(m => m.TvTuner, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Modem)
+                @Html.TextBoxFor(m => m.Modem, new {@class = "form-control"})
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Accesorii)
+                @Html.TextBoxFor(m => m.Accesorii, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Mentiuni)
+                @Html.TextAreaFor(m => m.Mentiuni, new {@class = "form-control", @rows = 5})
+            </div>
+        </div>
+    </div>
+</div>

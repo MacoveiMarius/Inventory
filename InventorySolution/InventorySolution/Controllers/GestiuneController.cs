@@ -70,6 +70,7 @@ namespace InventorySolution.Controllers
                 // TODO: Add insert logic here
                 int gestiuneId;
                 int.TryParse(Request.Form["pk"], out gestiuneId);
+
                 return RedirectToAction("Index");
             }
             catch
