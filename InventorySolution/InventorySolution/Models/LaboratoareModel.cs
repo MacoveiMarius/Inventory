@@ -7,11 +7,11 @@ using System.Web;
 
 namespace InventorySolution.Models
 {
-    public class LaboratorViewModel
+    public class LaboratoareViewModel
     {
         public List<LaboratorModel> Laboratoare { get; set; }
 
-        public LaboratorViewModel()
+        public LaboratoareViewModel()
         {
             Laboratoare = new List<LaboratorModel>();
         }

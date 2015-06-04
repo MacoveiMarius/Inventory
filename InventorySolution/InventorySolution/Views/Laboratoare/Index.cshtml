@@ -1,5 +1,5 @@
 ﻿@using System.Web.Optimization
-@model InventorySolution.Models.TipuriViewModel
+@model InventorySolution.Models.LaboratoareViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -11,10 +11,10 @@
 @section JS
 {
     @Scripts.Render("~/scripts/xeditable")
-    @Scripts.Render("~/scripts/tipuri")
+    @Scripts.Render("~/scripts/laboratoare")
     <script type="text/javascript">
         $(function() {
-            $.Tipuri.MakeEditables();
+            $.Laboratoare.MakeEditables();
 
             $('#confirm-delete').on('show.bs.modal', function(e) {
                 $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
@@ -33,27 +33,38 @@
                         data: {},
                         success: function(data) {
                             $obj.closest('#main').find('.list-group:first').append(data);
-                            $.Tipuri.MakeEditableLastAddedItem();
+                            $.Laboratoare.MakeEditableLastAddedItem();
                         }
                     });
                     return false;
                 }
             }, ".add-custom-field");
         });
+
+        $(function () {
+            $.fn.editable.defaults.mode = 'inline';
+
+            $('.example').editable({
+                type: 'text',
+                pk: 1,
+                url: 'post.php',
+                title: 'Enter example'
+            });
+        });
     </script>
 }
 <div class="panel panel-default">
     <!-- Default panel contents -->
     <div class="panel-heading">
-        Tipuri
-        <a href="@Url.Action("Create", "Tipuri")" class="btn-sm btn-primary add-custom-field"><i class="glyphicon glyphicon-plus"></i></a>
+        Laboratoare
+        <a href="@Url.Action("Create", "Laboratoare")" class="btn-sm btn-primary add-custom-field"><i class="glyphicon glyphicon-plus"></i></a>
     </div>
     <div class="panel-body">
         <!-- List group -->
         <div class="list-group">
-            @foreach (var tip in Model.Tipuri)
+            @foreach (var laborator in Model.Laboratoare)
             {
-                @Html.EditorFor(m => tip, "TipEditor")
+                @Html.EditorFor(m => laborator, "LaboratorEditor")
             }
         </div>
     </div>
@@ -78,3 +89,4 @@
         </div>
     </div>
 </div>
+<h2>Index</h2>

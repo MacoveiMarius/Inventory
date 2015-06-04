@@ -30,6 +30,11 @@ namespace Inventory.Core
             get { return GetTable<Tip>(); }
         }
 
+        public Table<Inventar> Inventare
+        {
+            get { return GetTable<Inventar>(); }
+        }
+
         #endregion TABLES
     }
 }

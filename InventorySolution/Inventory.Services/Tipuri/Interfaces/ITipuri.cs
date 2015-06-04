@@ -10,6 +10,14 @@ namespace Inventory.Services
 
     public interface ITipuri
     {
-        List<Tip> GetTipuri();
+        List<Tip> GetTipuri(bool loadFullData = false);
+
+        Tip GetTip(int id);
+
+        ServiceResult AddTip(Tip tip);
+
+        ServiceResult UpdateTip(Tip updateTip);
+
+        void DeleteTip(int id);
     }
 }

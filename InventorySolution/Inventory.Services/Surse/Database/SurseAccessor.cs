@@ -27,7 +27,7 @@ namespace Inventory.Services
             {
                 PreLoadData(context, loadFullData);
                 var result = (from t in context.Surse
-                    where t.Id > 0      // sursa cu id-ul '0' este NULL
+                    //where t.Id > 0      // sursa cu id-ul '0' este NULL
                     select t).ToList<Sursa>();
                 return result;
             }
@@ -104,16 +104,16 @@ namespace Inventory.Services
             {
                 try
                 {
-                    var targetNote = (from n in context.Surse
+                    var targetSursa = (from n in context.Surse
                                       where n.Id == updateSursa.Id
                                       select n).FirstOrDefault();
-                    if (targetNote == null)
+                    if (targetSursa == null)
                     {
                         result.Result = (int)OperationResult.ErrorItemNotFound;
                     }
                     else
                     {
-                        BaseEntity.ShallowCopy(updateSursa, targetNote);
+                        BaseEntity.ShallowCopy(updateSursa, targetSursa);
                         context.SubmitChanges();
                     }
                 }

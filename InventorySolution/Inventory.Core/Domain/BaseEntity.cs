@@ -68,6 +68,16 @@ namespace Inventory.Core
             return !(x == y);
         }
 
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return this  == (obj as BaseEntity);
+        }
+
         public virtual EntitySet<T> ValidateEntitySet<T>(EntitySet<T> entitySet) where T : class
         {
             if (entitySet != null)

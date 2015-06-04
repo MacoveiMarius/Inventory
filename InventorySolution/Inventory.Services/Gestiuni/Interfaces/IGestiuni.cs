@@ -9,7 +9,7 @@ namespace Inventory.Services
 {
     public interface IGestiuni
     {
-        List<Gestiune> GetGestiuni();
+        List<Gestiune> GetGestiuni(bool loadFullData = false);
 
         Gestiune GetGestiune(int id);
     }

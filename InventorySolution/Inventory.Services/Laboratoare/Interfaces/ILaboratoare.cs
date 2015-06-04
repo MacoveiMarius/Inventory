@@ -10,6 +10,14 @@ namespace Inventory.Services
 
     public interface ILaboratoare
     {
-        List<Laborator> GetLaboratoare();
+        List<Laborator> GetLaboratoare(bool loadFullData=false);
+
+        Laborator GetLaborator(int id);
+        
+        ServiceResult AddLaborator(Laborator lab);
+        
+        ServiceResult UpdateLaborator(Laborator updatelab);
+        
+        void DeleteLaborator(int id);
     }
 }

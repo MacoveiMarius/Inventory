@@ -16,7 +16,7 @@ namespace Inventory.Services
             _gestiuniAccessor = new GestiuniAccessor(strDbConnectionString);
         }
 
-        public List<Gestiune> GetGestiuni()
+        public List<Gestiune> GetGestiuni(bool loadFullData = false)
         {
             return  _gestiuniAccessor.GetGestiuni();
         }

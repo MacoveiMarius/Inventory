@@ -7,6 +7,18 @@ using System.Web;
 
 namespace InventorySolution.Models
 {
+    public class GestiuneViewModel
+    {
+        public List<GestiuneModel> Gestiune { get; set; }
+
+        public GestiuneViewModel()
+        {
+            Gestiune = new List<GestiuneModel>();
+        }
+
+        public MessageModel Message { get; set; }
+    }
+
     public class GestiuneModel
     {
         [DisplayName("Nr. crt.")]

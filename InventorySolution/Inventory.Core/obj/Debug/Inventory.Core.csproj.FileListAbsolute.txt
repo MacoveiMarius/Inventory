@@ -10,6 +10,6 @@ D:\GitHub\Inventory\InventorySolution\Inventory.Core\obj\Debug\Inventory.Core.dl
 D:\GitHub\Inventory\InventorySolution\Inventory.Core\obj\Debug\Inventory.Core.pdb
 J:\Documents\Inventory\InventorySolution\Inventory.Core\bin\Debug\Inventory.Core.dll
 J:\Documents\Inventory\InventorySolution\Inventory.Core\bin\Debug\Inventory.Core.pdb
-J:\Documents\Inventory\InventorySolution\Inventory.Core\obj\Debug\Inventory.Core.csprojResolveAssemblyReference.cache
 J:\Documents\Inventory\InventorySolution\Inventory.Core\obj\Debug\Inventory.Core.dll
 J:\Documents\Inventory\InventorySolution\Inventory.Core\obj\Debug\Inventory.Core.pdb
+J:\Documents\Inventory\InventorySolution\Inventory.Core\obj\Debug\Inventory.Core.csprojResolveAssemblyReference.cache

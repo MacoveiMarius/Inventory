@@ -1,0 +1,27 @@
+﻿@using System.Web.Optimization
+@model InventorySolution.Models.GestiuneViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+@section CSS
+{
+    @Styles.Render("~/xeditable")
+}
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">
+        Gestiune
+        <a href="@Url.Action("Create", "Gestiune")" class="btn-sm btn-primary add-custom-field"><i class="glyphicon glyphicon-plus"></i></a>
+    </div>
+    <div class="panel-body">
+        <!-- List group -->
+        <div class="list-group">
+            @foreach (var gestiune in Model.Gestiune)
+            {
+                @Html.EditorFor(m => gestiune, "GestiuneEditor")
+            }
+        </div>
+    </div>
+</div>

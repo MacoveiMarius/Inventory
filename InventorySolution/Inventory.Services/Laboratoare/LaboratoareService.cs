@@ -16,9 +16,29 @@ namespace Inventory.Services
             _laboratoareAccessor = new LaboratoareAccessor(strDbConnectionString);
         }
 
-        public List<Laborator> GetLaboratoare()
+        public List<Laborator> GetLaboratoare(bool loadFullData = false)
         {
-            return _laboratoareAccessor.GetLaboratoare();
+            return _laboratoareAccessor.GetLaboratoare(loadFullData);
+        }
+
+        public Laborator GetLaborator(int id)
+        {
+            return _laboratoareAccessor.GetLaborator(id);
+        }
+
+        public ServiceResult AddLaborator(Laborator lab)
+        {
+            return _laboratoareAccessor.AddLaborator(lab);
+        }
+
+        public ServiceResult UpdateLaborator(Laborator updatelab)
+        {
+            return _laboratoareAccessor.UpdateLaborator(updatelab);
+        }
+
+        public void DeleteLaborator(int id)
+        {
+            _laboratoareAccessor.DeleteLaborator(id);
         }
     }
 }
