@@ -67,11 +67,11 @@ namespace Inventory.Services
                     where t.SursaId == id
                     select t;
 
-                if (inventare != null && inventare.Count() > 0)
-                {
-                    context.Inventare.DeleteAllOnSubmit(inventare);
-                    context.SubmitChanges();
-                }
+                //if (inventare != null && inventare.Count() > 0)
+                //{
+                //    context.Inventare.DeleteAllOnSubmit(inventare);
+                //    context.SubmitChanges();
+                //}
                 context.Surse.DeleteOnSubmit(sursa);
                 context.SubmitChanges();
             }
@@ -91,7 +91,19 @@ namespace Inventory.Services
                 }
                 catch (SqlException sqlExc)
                 {
-                    result.Result = sqlExc.Number;
+                    if (sqlExc.Number == BaseEntity.UNIQUE_INDEX_VIOLATION ||
+                        sqlExc.Number == BaseEntity.CANNOT_INSERT_DUPLICATE_KEY_ROW)
+                    {
+                        result.Result = (int)OperationResult.ErrorDuplicateItem;
+                    }
+                    else if (sqlExc.Number == BaseEntity.FOREIGN_KEY_VIOLATION)
+                    {
+                        result.Result = (int)OperationResult.ErrorForeignKeyViolation;
+                    }
+                    else
+                    {
+                        result.Result = (int)OperationResult.Error;
+                    }
                 }
             }
             return result;
@@ -149,6 +161,19 @@ namespace Inventory.Services
             else
             {
                 context.ObjectTrackingEnabled = false;
+            }
+        }
+
+
+        public Sursa GetSursaByNameInvariant(string name)
+        {
+            using (var context = SurseDb.Create(_strDbConnectionString.ToString()))
+            {
+                PreLoadData(context, false);
+                var result = (from t in context.Surse
+                              where t.Nume.ToLower() == name
+                              select t).SingleOrDefault();
+                return result;
             }
         }
     }

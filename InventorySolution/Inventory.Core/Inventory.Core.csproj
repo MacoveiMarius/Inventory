@@ -49,6 +49,7 @@
     <Compile Include="Domain\BaseEntity.cs" />
     <Compile Include="Domain\Calculatoare\Calculator.cs" />
     <Compile Include="Domain\Inventare\Inventar.cs" />
+    <Compile Include="Domain\Inventare\Natura.cs" />
     <Compile Include="Domain\OperationResult.cs" />
     <Compile Include="Domain\ServiceResult.cs" />
     <Compile Include="Domain\Tipuri\Tip.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="InventaryDBContexts\CalculatoareDb.cs" />
     <Compile Include="InventaryDBContexts\InventaryDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\StringEnum.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

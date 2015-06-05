@@ -12,6 +12,8 @@ namespace Inventory.Services
     {
         List<Sursa> GetSurse(bool loadFullData = false);
 
+        Sursa GetSursaByNameInvariant(string name);
+
         Sursa GetSursa(int id);
 
         ServiceResult AddSursa(Sursa sursa);

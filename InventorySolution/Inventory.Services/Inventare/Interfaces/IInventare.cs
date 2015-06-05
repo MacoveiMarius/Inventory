@@ -14,6 +14,8 @@ namespace Inventory.Services
 
         Inventar GetInventar(int id);
 
-        int DeleteInventareBySursa(int sursaId);
+        ServiceResult AddInventar(Inventar inventar);
+
+        ServiceResult AddInventarWithNewCalculator(Inventar inventar, Calculator calculator);
     }
 }

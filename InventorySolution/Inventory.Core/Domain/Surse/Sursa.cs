@@ -12,6 +12,8 @@ namespace Inventory.Core.Domain
     {
         private EntitySet<Inventar> _inventare;
 
+        public const string SURSA_CALCULATOARE = "calculatoare";
+
         #region Inventare
 
         [DataMember]

@@ -40,5 +40,11 @@ namespace Inventory.Services
         {
             _surseAccessor.DeleteSursa(id);
         }
+
+
+        public Sursa GetSursaByNameInvariant(string name)
+        {
+            return _surseAccessor.GetSursaByNameInvariant(name);
+        }
     }
 }
