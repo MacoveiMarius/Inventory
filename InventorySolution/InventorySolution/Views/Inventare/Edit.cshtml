@@ -1,0 +1,46 @@
+﻿@model InventorySolution.Models.NewInventarModel
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="panel-body">
+    @Html.ValidationSummary("Erori", new {style="color:red;font-family:comic sans ms;"})
+</div>
+@using (Html.BeginForm("Edit", "Inventare", FormMethod.Post, new { @class = "panel-body" }))
+{
+    <div class="row">
+        <!-- Campuri inventar -->
+        <div class="col-md-6">
+            @Html.EditorFor(m => m.Inventar, "InventarEditor")
+        </div>
+        <!-- Campuri calculator -->
+        <div class="col-md-6">
+            @Html.EditorFor(m => m.Calculator, "CalculatorEditor")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button name='Save' type='submit' value='Save' class="btn btn-primary">Save</button>
+            <a href="@Url.Action("Index", "Inventare")" class="btn btn-default">Cancel</a>
+        </div>
+    </div>
+}
+@section JS 
+{
+    <script>
+        $(function () {
+            function CalcToggle() {
+                var $sursa = $('#sursa-edit option:selected').text().toLowerCase();;
+                if ($sursa == 'calculatoare') {
+                    $("#calculator-edit").show();
+                } else {
+                    $("#calculator-edit").hide();
+                }
+            }
+
+            $("#sursa-edit").change(function() {
+                CalcToggle();
+            });
+        });
+    </script>
+}

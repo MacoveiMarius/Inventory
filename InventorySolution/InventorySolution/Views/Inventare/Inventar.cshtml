@@ -1,103 +1,18 @@
-﻿@model InventorySolution.Models.InventarDataModel
+﻿@model InventorySolution.Models.InventarModel
 @{
-    ViewBag.Title = string.Format("Inventar #{0}", Model.InventarId);
+    ViewBag.Title = string.Format("Inventar #{0}", Model.Inventar.InventarId);
 }
 @*afisare detalii inventar*@
-<div class="container">
+<div class ="panel-body">
     <div class="row">
         @*panou stanga*@
         <div class="col-lg-6 col-md-6">
-            @*<div class="row">*@
-            @*inventar id*@
-            <div class="row">
-                @*<div class="col-md-6">*@
-                @*<div class="row">*@
-                <div class="col-md-3">
-                    <h4>Nr. ctr.</h4>
-                </div>
-                <div class="col-md-9">
-                    <a href="@Url.Action("Edit", "Inventare", new {id = Model.InventarId})">@string.Format("#{0}", Model.InventarId)</a>
-                </div>
-                @*</div>*@
-            </div>
-
-            @*tip*@
-            <div class="row">
-                @*<div class="col-md-6">*@
-                @*<div class="row">*@
-                <div class="col-md-3">
-                    <h4>Tip</h4>
-                </div>
-                <div class="col-md-9">
-                    @Model.Tip.Nume
-                </div>
-                @*</div>*@
-                @*</div>*@
-            </div>
-            @*denumire*@
-            <div class="row">
-                <div class="col-md-3">
-                    <h4>Denumire</h4>
-                </div>
-                <div class="col-md-9">
-                    @Model.Denumire
-                </div>
-            </div>
-
-            @*nume*@
-            <div class="row">
-                <div class="col-md-3">
-                    <h4>Nume</h4>
-                </div>
-                <div class="col-md-9">
-                    @Model.Gestiune.FullName
-                </div>
-            </div>
-
-            @*catedra*@
-            <div class="row">
-                <div class="col-md-3">
-                    <h4>Catedra</h4>
-                </div>
-                <div class="col-md-9">
-                    @Model.Gestiune.Catedra
-                </div>
-            </div>
-
-            @*laborator*@
-            <div class="row">
-                <div class="col-md-3">
-                    <h4>Laborator</h4>
-                </div>
-                <div class="col-md-9">
-                    @Model.Laborator.Nume
-                </div>
-            </div>
-
-            @*sursa*@
-            <div class="row">
-                <div class="col-md-3">
-                    <h4>Sursa</h4>
-                </div>
-                <div class="col-md-9">
-                    @Model.Sursa
-                </div>
-            </div>
-
-            @*natura*@
-            <div class="row">
-                <div class="col-md-3">
-                    <h4>Natura</h4>
-                </div>
-                <div class="col-md-9">
-                    @Model.Natura
-                </div>
-            </div>
-        </div>
+             @Html.DisplayFor(m =>m.Inventar, "InventarDisplay")
+           </div>
 
         @*panou dreapta*@
         <div class="col-lg-6 col-md-6">
-
+            @Html.DisplayFor(m =>m.Calculator, "CalculatorDisplay")   
         </div>
     </div>
 </div>

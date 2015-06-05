@@ -1,0 +1,114 @@
+﻿@model InventorySolution.Models.InventarDataModel
+
+
+<div class="row" id="inventar-edit">
+    <!-- inventar -->
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.InventarId)
+            </div>
+            <div class="col-md-4">
+                <a href="@Url.Action("Edit", "Inventare", new {id = Model.InventarId})"> @string.Format("#{0}", Model.InventarId)</a>
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.Denumire)
+            </div>
+            <div class="col-md-4">
+                @Model.Denumire
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.Gestiune)
+            </div>
+            <div class="col-md-4">
+                @Model.Gestiune.Nume
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.Laborator)
+            </div>
+            <div class="col-md-4">
+                @Model.Laborator.Nume
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.AnPFun)
+            </div>
+            <div class="col-md-4">
+                @Model.AnPFun
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.PVerbal)
+            </div>
+            <div class="col-md-4">
+                @Model.PVerbal
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.Pret)
+            </div>
+            <div class="col-md-4">
+                @Model.Pret
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.Cantitate)
+            </div>
+            <div class="col-md-4">
+                @Model.Cantitate
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.Valoare)
+            </div>
+            <div class="col-md-4">
+                @Model.Valoare
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.NrInventar)
+            </div>
+            <div class="col-md-4">
+                @Model.NrInventar
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.Serie)
+            </div>
+            <div class="col-md-4">
+                @Model.Serie
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.Tip)
+            </div>
+            <div class="col-md-4">
+                @Model.Tip.Nume
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.Natura)
+            </div>
+            <div class="col-md-4">
+                @Model.Natura
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.Sursa)
+            </div>
+            <div class="col-md-4">
+                @Model.Sursa.Nume
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.Mentiuni)
+            </div>
+            <div class="col-md-10">
+                @Model.Mentiuni
+            </div>
+        </div>
+    </div>
+</div>

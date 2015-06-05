@@ -131,5 +131,74 @@ namespace Inventory.Services
         {
             throw new NotImplementedException();
         }
+
+        public ServiceResult UpdateInventarWithNewCalculator(Inventar inventar, Calculator calculator)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ServiceResult UpdateInventar(Inventar inventar)
+        {
+            ServiceResult result = new ServiceResult((int)OperationResult.Success);
+            using (var context = InventareDb.Create(_strDbConnectionString.ToString()))
+            {
+                try
+                {
+                    var target = (from g in context.Inventare
+                                          where g.Id == inventar.Id
+                                          select g).FirstOrDefault();
+
+                    if (target == null)
+                    {
+                        result.Result = (int)OperationResult.ErrorItemNotFound;
+                    }
+                    else
+                    {
+                        BaseEntity.ShallowCopy(inventar, target);
+                        context.SubmitChanges();
+
+                        result.EntityId = inventar.Id;
+                    }
+                }
+                catch (SqlException sqlExc)
+                {
+                    if (sqlExc.Number == BaseEntity.UNIQUE_INDEX_VIOLATION ||
+                        sqlExc.Number == BaseEntity.CANNOT_INSERT_DUPLICATE_KEY_ROW)
+                    {
+                        result.Result = (int)OperationResult.ErrorDuplicateItem;
+                    }
+                    else if (sqlExc.Number == BaseEntity.FOREIGN_KEY_VIOLATION)
+                    {
+                        result.Result = (int)OperationResult.ErrorForeignKeyViolation;
+                    }
+                    else
+                    {
+                        result.Result = (int)OperationResult.Error;
+                    }
+                }
+            }
+            return result;
+        }
+
+
+        public void DeleteInventar(int id)
+        {
+            using (var context = InventareDb.Create(_strDbConnectionString.ToString()))
+            {
+                var result = (from t in context.Inventare
+                              where t.Id == id
+                              select t).SingleOrDefault();
+                if (result == null)
+                    return;
+                                
+                context.Inventare.DeleteOnSubmit(result);
+                context.SubmitChanges();
+            }
+        }
+
+        public ServiceResult Caseaza(int id, Casare casare)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -21,10 +21,19 @@ namespace Inventory.Services
             return  _calculatoareAccessor.GetCalculatoare();
         }
 
+        public Calculator GetCalculator(int id)
+        {
+            return _calculatoareAccessor.GetCalculator(id);
+        }
 
         public ServiceResult AddCalculator(Calculator calculator)
         {
             return _calculatoareAccessor.AddCalculator(calculator);
+        }
+
+        public ServiceResult UpdateCalculator(Calculator calculator)
+        {
+            return _calculatoareAccessor.UpdateCalculator(calculator);
         }
     }
 }

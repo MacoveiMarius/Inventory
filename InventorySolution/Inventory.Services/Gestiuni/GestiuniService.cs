@@ -25,5 +25,19 @@ namespace Inventory.Services
         {
             return _gestiuniAccessor.GetGestiune(id);
         }
+        public ServiceResult UpdateGestiune(Gestiune updateGestiune)
+        {
+            return _gestiuniAccessor.UpdateGestiune(updateGestiune);
+        }
+
+        public ServiceResult AddGestiune(Gestiune gestiune)
+        {
+            return _gestiuniAccessor.AddGestiune(gestiune);
+        }
+
+        public void DeleteGestiune(int id)
+        {
+            _gestiuniAccessor.DeleteGestiune(id);
+        }
     }
 }

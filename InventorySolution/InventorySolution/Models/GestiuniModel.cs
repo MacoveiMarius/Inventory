@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace InventorySolution.Models
 {
@@ -41,6 +42,16 @@ namespace InventorySolution.Models
         {
             get { return Nume != null || Prenume != null ? 
                 string.Format("{0} {1}", Nume, Prenume) : string.Empty; }
+        }
+
+        public string ToValue()
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(new { nume = Nume ?? string.Empty, prenume = Prenume ?? string.Empty, catedra = Catedra ?? string.Empty});
+        }
+
+        public override string ToString()
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
         }
 
         public MessageModel Message { get; set; }

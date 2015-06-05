@@ -64,6 +64,14 @@ namespace InventorySolution.Models
         public string Mentiuni { get; set; }
         
         public MessageModel Message { get; set; }
+
+        public InventarDataModel()
+        {
+            Sursa = new Sursa();
+            Gestiune = new Gestiune();
+            Laborator = new Laborator();
+            Tip = new Tip();
+        }
     }
 
     public class InventareModel
@@ -100,6 +108,14 @@ namespace InventorySolution.Models
     public class NewInventarModel
     {
         public NewInventarDataModel Inventar { get; set; }
+        public CalculatorModel Calculator { get; set; }
+
+        public MessageModel Message { get; set; }
+    }
+
+    public class InventarModel
+    {
+        public InventarDataModel Inventar { get; set; }
         public CalculatorModel Calculator { get; set; }
 
         public MessageModel Message { get; set; }

@@ -57,6 +57,7 @@ namespace Inventory.Services
             {
                 PreLoadData(context, loadFullData);
                 var result = (from t in context.Laboratoare
+                              where t.Id == id
                               select t).SingleOrDefault();
                 return result;
             }
@@ -127,6 +128,7 @@ namespace Inventory.Services
             using (var context = LaboratoareDb.Create(_strDbConnectionString.ToString()))
             {
                 var result = (from t in context.Laboratoare
+                              where t.Id == id
                               select t).SingleOrDefault();
                 if (result == null)
                     return;

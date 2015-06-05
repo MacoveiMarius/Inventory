@@ -12,6 +12,10 @@ namespace Inventory.Services
     {
         List<Calculator> GetCalculatoare();
 
+        Calculator GetCalculator(int id);
+
         ServiceResult AddCalculator(Calculator calculator);
+
+        ServiceResult UpdateCalculator(Calculator calculator);
     }
 }

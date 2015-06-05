@@ -12,27 +12,28 @@ using Inventory.Core.Domain;
 namespace Inventory.Core
 {
     
-    public class GestiuniDb : InventaryDataContext
+    public class CasareDb : InventaryDataContext
     {
-        private GestiuniDb(SqlConnection conn)
+        private CasareDb(SqlConnection conn)
             : base(conn)
         {
         }
 
-        public static GestiuniDb Create(string connectionString)
+        public static CasareDb Create(string connectionString)
         {
-            return new GestiuniDb(new SqlConnection(connectionString));
+            return new CasareDb(new SqlConnection(connectionString));
         }
 
         #region TABLES
-        public Table<Gestiune> Gestiuni
+        public Table<Casare> Casare
         {
-            get { return GetTable<Gestiune>(); }
+            get { return GetTable<Casare>(); }
         }
-        public Table<Inventar> Inventare
-        {
-            get { return GetTable<Inventar>(); }
-        }
+
+        //public Table<Inventar> Inventare
+        //{
+        //    get { return GetTable<Inventar>(); }
+        //}
         #endregion TABLES
     }
 }
