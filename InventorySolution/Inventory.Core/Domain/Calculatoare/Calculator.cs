@@ -37,7 +37,7 @@ namespace Inventory.Core.Domain
         #endregion
 
         [DataMember]
-        [Column(IsDbGenerated = true, IsPrimaryKey = true, Name = "Nr_crt")]
+        [Column(IsDbGenerated = false, IsPrimaryKey = true, Name = "Nr_crt")]
         public int Id { get; set; }
 
         [DataMember]

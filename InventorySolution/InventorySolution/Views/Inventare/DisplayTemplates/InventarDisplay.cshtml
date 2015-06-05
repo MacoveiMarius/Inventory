@@ -9,7 +9,7 @@
                 @Html.LabelFor(m => m.InventarId)
             </div>
             <div class="col-md-4">
-                <a href="../"> @string.Format("#{0}", Model.InventarId)</a>
+                <a href="@Url.Action("Edit", "Inventare", new {id = Model.InventarId})"> @string.Format("#{0}", Model.InventarId)</a>
             </div>
             <div class="col-md-2">
                 @Html.LabelFor(m => m.Denumire)

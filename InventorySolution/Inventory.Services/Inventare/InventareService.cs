@@ -57,5 +57,48 @@ namespace Inventory.Services
 
             return serviceResult;
         }
+
+
+        public ServiceResult UpdateInventarWithNewCalculator(Inventar inventar, Calculator calculator)
+        {
+            var serviceResult = UpdateInventar(inventar);
+
+            //s-a reusit adaugarea unui nou inventar
+            if (serviceResult.OperationResult == OperationResult.Success)
+            {
+                //actualizeaza calculatorul pentru inventar
+                calculator.Id = serviceResult.EntityId;
+
+                var src = SVC.Calculatoare.UpdateCalculator(calculator);
+                if (src.OperationResult == OperationResult.Success)
+                {
+                    return serviceResult;
+                }
+            }
+
+            return serviceResult;
+        }
+
+        public ServiceResult UpdateInventar(Inventar inventar)
+        {
+            return _inventareAccessor.UpdateInventar(inventar);
+        }
+
+
+        public void DeleteInventar(int id)
+        {
+            _inventareAccessor.DeleteInventar(id);
+        }
+
+        public ServiceResult Caseaza(int id, Casare casare)
+        {
+            var serviceResult = SVC.Casari.AddCasare(casare);
+            if (serviceResult.OperationResult == OperationResult.Success)
+            {
+                DeleteInventar(id);
+            }
+
+            return serviceResult;
+        }
     }
 }

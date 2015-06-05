@@ -15,6 +15,7 @@ namespace Inventory.Services
         private static ISurse _surseServices = null;
         private static ITipuri _tipuriServices = null;
         private static IInventare _inventareServices = null;
+        private static ICasari _casariServices = null;
 
         public static ICalculatoare Calculatoare
         {
@@ -85,6 +86,18 @@ namespace Inventory.Services
                     _inventareServices = new InventareService(new StringBuilder(Config.InventaryConnection));
                 }
                 return _inventareServices;
+            }
+        }
+
+        public static ICasari Casari
+        {
+            get
+            {
+                if (_casariServices == null)
+                {
+                    _casariServices = new CasariService(new StringBuilder(Config.InventaryConnection));
+                }
+                return _casariServices;
             }
         }
     }

@@ -1,0 +1,129 @@
+﻿@using System.Collections
+@using Inventory.Core.Domain.Inventare
+@using InventorySolution
+@using Microsoft.Ajax.Utilities
+@model InventorySolution.Models.CasareModel
+
+@{
+    ViewBag.Title = "CasareEditor";
+}
+
+@section js
+{
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+}
+
+<div class="row">
+    @Html.HiddenFor(m => m.Id)
+
+    <!-- left -->
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Denumire)
+                <i class="red_star">*</i>
+                @Html.TextBoxFor(m => m.Denumire, new {@class = "form-control", @readonly="readonly"})
+                @Html.ValidationMessageFor(m => m.Denumire)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Nume)
+                <i class="red_star">*</i>
+                @Html.TextBoxFor(m => m.Nume, new {@class = "form-control", @readonly = "readonly"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Prenume)
+                <i class="red_star">*</i>
+                @Html.TextBoxFor(m => m.Prenume, new {@class = "form-control", @readonly = "readonly"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Laborator)
+                <i class="red_star">*</i>
+                @Html.TextBoxFor(m => m.Laborator, new {@class = "form-control", @readonly = "readonly"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.AnPFun)
+                <i class="red_star">*</i>
+                @Html.TextBoxFor(m => m.AnPFun, new {@class = "form-control", @readonly = "readonly"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.PVerbal)
+                <i class="red_star">*</i>
+                @Html.TextBoxFor(m => m.PVerbal, new {@class = "form-control", @readonly = "readonly"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.NrInventar)
+                @Html.TextBoxFor(m => m.NrInventar, new {@class = "form-control", @readonly = "readonly"})
+            </div>
+        </div>
+    </div>
+
+    <!-- right -->
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Serie)
+                @Html.TextBoxFor(m => m.Serie, new {@class = "form-control", @readonly = "readonly"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                @Html.LabelFor(m => m.Pret)
+                @Html.TextBoxFor(m => m.Pret, new {@class = "form-control", @readonly = "readonly"})
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(m => m.Cantitate)
+                @Html.TextBoxFor(m => m.Cantitate, new {@class = "form-control", @readonly = "readonly"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Valoare)
+                @Html.TextBoxFor(m => m.Valoare, new {@class = "form-control", @readonly = "readonly"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.DataCasare)
+                @Html.TextBoxFor(m => m.DataCasare, new {@class = "form-control", @readonly = "readonly"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Cod)
+                @Html.TextBoxFor(m => m.Cod, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.DurataNormala)
+                @Html.TextBoxFor(m => m.DurataNormala, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.DurataReal)
+                @Html.TextBoxFor(m => m.DurataReal, new {@class = "form-control"})
+            </div>
+        </div>
+    </div>
+</div>
+<!-- mentiuni -->
+<div class="row">
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.Mentiuni)
+        @Html.TextAreaFor(m => m.Mentiuni, new {@class = "form-control", @rows = "5", @readonly="readonly"})
+    </div>
+</div>

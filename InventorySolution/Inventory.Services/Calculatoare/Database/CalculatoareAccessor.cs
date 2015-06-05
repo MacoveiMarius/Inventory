@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Inventory.Core.Domain;
 using Inventory.Core;
+using System.Data.SqlClient;
 
 namespace Inventory.Services
 {
@@ -53,6 +54,79 @@ namespace Inventory.Services
                               select t).SingleOrDefault();
                 return result;
             }
+        }
+
+        public ServiceResult AddCalculator(Calculator calculator)
+        {
+            ServiceResult result = new ServiceResult((int)OperationResult.Success);
+            using (var context = CalculatoareDb.Create(_strDbConnectionString.ToString()))
+            {
+                try
+                {
+                    context.Calculatoare.InsertOnSubmit(calculator);
+                    context.SubmitChanges();
+
+                    result.EntityId = calculator.Id;
+                }
+                catch (SqlException sqlExc)
+                {
+                    if (sqlExc.Number == BaseEntity.UNIQUE_INDEX_VIOLATION ||
+                        sqlExc.Number == BaseEntity.CANNOT_INSERT_DUPLICATE_KEY_ROW)
+                    {
+                        result.Result = (int)OperationResult.ErrorDuplicateItem;
+                    }
+                    else if (sqlExc.Number == BaseEntity.FOREIGN_KEY_VIOLATION)
+                    {
+                        result.Result = (int)OperationResult.ErrorForeignKeyViolation;
+                    }
+                    else
+                    {
+                        result.Result = (int)OperationResult.Error;
+                    }
+                }
+            }
+            return result;
+        }
+
+        public ServiceResult UpdateCalculator(Calculator calculator)
+        {
+            ServiceResult result = new ServiceResult((int)OperationResult.Success);
+            using (var context = InventareDb.Create(_strDbConnectionString.ToString()))
+            {
+                try
+                {
+                    var target = (from g in context.Calculatoare
+                                          where g.Id == calculator.Id
+                                          select g).FirstOrDefault();
+
+                    if (target == null)
+                    {
+                        result.Result = (int)OperationResult.ErrorItemNotFound;
+                    }
+                    else
+                    {
+                        BaseEntity.ShallowCopy(calculator, target);
+                        context.SubmitChanges();
+                    }
+                }
+                catch (SqlException sqlExc)
+                {
+                    if (sqlExc.Number == BaseEntity.UNIQUE_INDEX_VIOLATION ||
+                        sqlExc.Number == BaseEntity.CANNOT_INSERT_DUPLICATE_KEY_ROW)
+                    {
+                        result.Result = (int)OperationResult.ErrorDuplicateItem;
+                    }
+                    else if (sqlExc.Number == BaseEntity.FOREIGN_KEY_VIOLATION)
+                    {
+                        result.Result = (int)OperationResult.ErrorForeignKeyViolation;
+                    }
+                    else
+                    {
+                        result.Result = (int)OperationResult.Error;
+                    }
+                }
+            }
+            return result;
         }
     }
 }

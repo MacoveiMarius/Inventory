@@ -17,5 +17,13 @@ namespace Inventory.Services
         ServiceResult AddInventar(Inventar inventar);
 
         ServiceResult AddInventarWithNewCalculator(Inventar inventar, Calculator calculator);
+
+        ServiceResult UpdateInventarWithNewCalculator(Inventar inventar, Calculator calculator);
+
+        ServiceResult UpdateInventar(Inventar inventar);
+
+        void DeleteInventar(int id);
+
+        ServiceResult Caseaza(int id, Casare casare);
     }
 }

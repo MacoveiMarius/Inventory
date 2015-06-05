@@ -1,0 +1,20 @@
+﻿@model InventorySolution.Models.CasareModel
+@{
+    ViewBag.Title = "Create";
+}
+<div class="panel-body">
+    @Html.ValidationSummary("Erori", new { style = "color:red;font-family:comic sans ms;" })
+</div>
+@using (Html.BeginForm("Create", "Casari", FormMethod.Post, new { @class = "panel-body" }))
+{
+    <div class="panel-body">
+        @Html.EditorFor(m => m, "CasareEditor");
+
+        <div class="row">
+            <div class="col-md-12">
+                <button name='Save' type='submit' value='Caseaza' class="btn btn-primary">Save</button>
+                <a href="@Url.Action("Index", "Inventare")" class="btn btn-default">Cancel</a>
+            </div>
+        </div>
+    </div>
+}
