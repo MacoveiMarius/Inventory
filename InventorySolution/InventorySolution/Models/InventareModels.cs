@@ -6,6 +6,7 @@ using System.Data.Metadata.Edm;
 using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
+using DataAnnotationsExtensions;
 using Inventory.Core.Domain.Inventare;
 
 namespace InventorySolution.Models
@@ -34,8 +35,10 @@ namespace InventorySolution.Models
         public string PVerbal { get; set; }
 
         [Display(Name = "Pret")]
+        [Range(0, 10000, ErrorMessage = "Pretul trebuie sa in intervalul 0 - 10000")]
         public double? Pret { get; set; }
 
+        [Integer(ErrorMessage = "Cantitatea trebuie sa fie un intreg")]
         [Display(Name = "Cantitate")]
         public short? Cantitate { get; set; }
 

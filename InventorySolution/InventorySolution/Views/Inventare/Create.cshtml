@@ -42,6 +42,20 @@
             $("#sursa-edit").change(function() {
                 CalcToggle();
             });
+
+            function UpdateValuare() {
+                var $pret = $("#pret").val();
+                var $cant = $("#cantitate").val();
+                var $val = $pret * $cant;
+                $("#valoare").val($val);
+            };
+            $("#pret").keyup(function () {
+                UpdateValuare();
+            });
+
+            $("#cantitate").keyup(function () {
+                UpdateValuare();
+            });
         });
     </script>
 }

@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Security.Policy;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Security;
 
 namespace InventorySolution
 {
@@ -31,6 +33,28 @@ namespace InventorySolution
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
+        }
+
+        void Application_EndRequest(object sender, EventArgs e)
+        {
+            var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            var loginPage = urlHelper.Action("Logon", "Account");
+            var registerPage = urlHelper.Action("Register", "Account");
+
+            if (Context.Request.Path != loginPage && Context.Request.Path != registerPage)
+            {
+                var logCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                
+                if (Request.IsAuthenticated)
+                {
+
+                }
+                else
+                {
+                    //redirect catre login daca nu este autentificat 
+                    Response.Redirect(loginPage);
+                }
+            }
         }
 
         protected void Application_Start()

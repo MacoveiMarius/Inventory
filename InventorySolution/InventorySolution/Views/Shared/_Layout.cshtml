@@ -7,7 +7,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title</title>
-    @*<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />*@
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
 
     @Styles.Render("~/content/bootstrap")
     @RenderSection("CSS", false)
@@ -25,14 +25,14 @@
 <body>
 <div class="page">
     <header>
-        <div id="title">
+        @*<div id="title">
             @if (!string.IsNullOrEmpty(ViewBag.Title))
             {
                 <h1 align="center">@ViewBag.Title</h1>
             }
-        </div>
+        </div>*@
         <div id="logindisplay">
-            @* @Html.Partial("_LogOnPartial")*@
+             @Html.Partial("_LogOnPartial")
         </div>
         @Html.Partial("_Nav")
     </header>

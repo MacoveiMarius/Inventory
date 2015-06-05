@@ -12,15 +12,8 @@ namespace InventorySolution.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
-
-            var calculatoare = SVC.Calculatoare.GetCalculatoare();
-            var gestiuni = SVC.Gestiuni.GetGestiuni();
-            var laboratoare = SVC.Laboratoare.GetLaboratoare();
-            var surse = SVC.Surse.GetSurse();
-            var tipuri = SVC.Tipuri.GetTipuri();
-            var inventare = SVC.Inventare.GetInventare();
-
+            ViewBag.Message = "";
+            
             return View();
         }
 
