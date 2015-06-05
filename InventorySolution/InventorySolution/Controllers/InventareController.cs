@@ -6,6 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Inventory.Core.Domain;
+using Inventory.Core.Domain.Inventare;
 using Inventory.Services;
 
 namespace InventorySolution.Controllers
@@ -55,7 +56,7 @@ namespace InventorySolution.Controllers
                 //Gestiune = inventar.GestiuneEntity ?? new Gestiune(),
                 //Laborator = inventar.LaboratorEntity ?? new Laborator(),
                 //Sursa = inventar.SursaEntity ?? new Sursa(),
-                Natura = inventar.Natura,
+                Natura = inventar.Natura.ParseEnum<Natura>(),
                 AnPFun = inventar.AnPFun,
                 PVerbal = inventar.PVerbal,
                 NrInventar = inventar.NrInventar,
@@ -78,7 +79,7 @@ namespace InventorySolution.Controllers
             var laboratoare = SVC.Laboratoare.GetLaboratoare();
             var surse = SVC.Surse.GetSurse();
             var tipuri = SVC.Tipuri.GetTipuri();
-            
+
             var model = new NewInventarModel
             {
                 Message = TempData["InventarMessage"] as MessageModel,
@@ -128,6 +129,10 @@ namespace InventorySolution.Controllers
                     Icon = MessageIcon.ErrorIcon
                 };
             }
+            else
+            {
+                model.Message = TempData["InventareMessage"] as MessageModel;
+            }
 
             if (gestiuneId.HasValue)
             {
@@ -143,21 +148,84 @@ namespace InventorySolution.Controllers
         [HttpPost]
         public ActionResult Create(NewInventarModel model, string save, string saveAndNew)
         {
-            var error = new System.Collections.ArrayList();
-            for (int i = 0; i < ModelState.Values.Count; i++)
-            {
-                if (ModelState.Values.ElementAt(i).Errors.Count > 0)
-                {
-                    error.Add( ModelState.ElementAt(i));
-                }
-            }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    // TODO: Add insert logic here
                     MessageModel message = null;
+                    Gestiune gestiune = SVC.Gestiuni.GetGestiune(model.Inventar.SelectedGestiuneId);
+
+                    Inventar inventar = new Inventar
+                    {
+                        Denumire = model.Inventar.Denumire,
+                        AnPFun = model.Inventar.AnPFun,
+                        GestiuneId = model.Inventar.SelectedGestiuneId,
+                        LaboratorId = model.Inventar.SelectedLaboratorId,
+                        PVerbal = model.Inventar.PVerbal,
+                        Pret = model.Inventar.Pret,
+                        Cantitate = model.Inventar.Cantitate ?? 1,
+                        NrInventar = model.Inventar.NrInventar,
+                        Serie = model.Inventar.Serie,
+                        TipId = model.Inventar.SelectedTipId,
+                        Natura = model.Inventar.Natura.ToString(),
+                        SursaId = model.Inventar.SelectedSursaId,
+                        Mentiuni = model.Inventar.Mentiuni
+                    };
+
+                    //verifica daca este sursa CALCULATOARE, daca da adauga calculator
+                    ServiceResult serviceResult;
+                    var sursaCalc = SVC.Surse.GetSursaByNameInvariant(Sursa.SURSA_CALCULATOARE);
+                    if (sursaCalc != null && inventar.SursaId == sursaCalc.Id)
+                    {
+                        Calculator calculator = new Calculator
+                        {
+                        };
+                        serviceResult = SVC.Inventare.AddInventarWithNewCalculator(inventar, calculator);
+                        if (serviceResult.Result == (int) OperationResult.Success)
+                        {
+                            message = new MessageModel
+                            {
+                                Message =
+                                    new HtmlString(string.Format("Am adaugat inventarul #{0}", serviceResult.EntityId)),
+                                Icon = MessageIcon.SuccessIcon,
+                                Type = MessageType.Success
+                            };
+                        }
+                    }
+                    else
+                    {
+                        serviceResult = SVC.Inventare.AddInventar(inventar);
+                        if (serviceResult.Result == (int) OperationResult.Success)
+                        {
+                            message = new MessageModel
+                            {
+                                Message =
+                                    new HtmlString(string.Format("Am adaugat inventarul #{0}", serviceResult.EntityId)),
+                                Icon = MessageIcon.SuccessIcon,
+                                Type = MessageType.Success
+                            };
+                        }
+                    }
+
+                    if (serviceResult.OperationResult != OperationResult.Success) // nu s-au reusit inserarile
+                    {
+                        string msg = String.Empty;
+                        switch (serviceResult.OperationResult)
+                        {
+                            case OperationResult.ErrorDuplicateItem:
+                                msg = string.Format("Exista inventarul #{0}", serviceResult.EntityId);
+                                break;
+                            default:
+                                msg = string.Format("Am intampinat o eroare");
+                                break;
+                        }
+                        message = new MessageModel
+                        {
+                            Message = new HtmlString(msg),
+                            Icon = MessageIcon.ErrorIcon,
+                            Type = MessageType.Error
+                        };
+                    }
 
                     TempData["InventareMessage"] = message;
 

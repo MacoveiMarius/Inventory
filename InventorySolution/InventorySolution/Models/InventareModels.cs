@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Metadata.Edm;
 using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
+using Inventory.Core.Domain.Inventare;
 
 namespace InventorySolution.Models
 {
@@ -15,7 +17,7 @@ namespace InventorySolution.Models
         [Display(Name = "Nr. ctr.")]
         public int InventarId { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Introduceti denumirea")]
         [Display(Name = "Denumire")]
         public string Denumire { get; set; }
 
@@ -50,7 +52,7 @@ namespace InventorySolution.Models
         public Tip Tip { get; set; }
 
         [Display(Name = "Natura")]
-        public string Natura { get; set; }
+        public Natura Natura { get; set; }
 
         [Display(Name = "Sursa")]
         public Sursa Sursa { get; set; }

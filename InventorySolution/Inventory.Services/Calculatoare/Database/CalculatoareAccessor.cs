@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,39 @@ namespace Inventory.Services
                              select t).ToList<Calculator>();
                 return result;
             }
+        }
+
+
+        public ServiceResult AddCalculator(Calculator calculator)
+        {
+            ServiceResult result = new ServiceResult((int)OperationResult.Success);
+            using (var context = CalculatoareDb.Create(_strDbConnectionString.ToString()))
+            {
+                try
+                {
+                    context.Calculatoare.InsertOnSubmit(calculator);
+                    context.SubmitChanges();
+
+                    result.EntityId = calculator.Id;
+                }
+                catch (SqlException sqlExc)
+                {
+                    if (sqlExc.Number == BaseEntity.UNIQUE_INDEX_VIOLATION ||
+                        sqlExc.Number == BaseEntity.CANNOT_INSERT_DUPLICATE_KEY_ROW)
+                    {
+                        result.Result = (int)OperationResult.ErrorDuplicateItem;
+                    }
+                    else if (sqlExc.Number == BaseEntity.FOREIGN_KEY_VIOLATION)
+                    {
+                        result.Result = (int)OperationResult.ErrorForeignKeyViolation;
+                    }
+                    else
+                    {
+                        result.Result = (int)OperationResult.Error;
+                    }
+                }
+            }
+            return result;
         }
     }
 }

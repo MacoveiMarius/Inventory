@@ -11,5 +11,7 @@ namespace Inventory.Services
     public interface ICalculatoare
     {
         List<Calculator> GetCalculatoare();
+
+        ServiceResult AddCalculator(Calculator calculator);
     }
 }

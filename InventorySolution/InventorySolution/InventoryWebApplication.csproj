@@ -110,7 +110,7 @@
   <ItemGroup>
     <Compile Include="Classes\BundleConfiguration.cs" />
     <Compile Include="Classes\HtmlHelpers\CommonHelper.cs" />
-    <Compile Include="Classes\Utility\StringEnum.cs" />
+    <Compile Include="Classes\Utility\MyExtensions.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GestiuneController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

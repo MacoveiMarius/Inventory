@@ -93,5 +93,43 @@ namespace Inventory.Services
                 context.ObjectTrackingEnabled = false;
             }
         }
+
+        public ServiceResult AddInventar(Inventar inventar)
+        {
+            ServiceResult result = new ServiceResult((int)OperationResult.Success);
+            using (var context = InventareDb.Create(_strDbConnectionString.ToString()))
+            {
+                try
+                {
+                    context.Inventare.InsertOnSubmit(inventar);
+                    context.SubmitChanges();
+
+                    result.EntityId = inventar.Id;
+                }
+                catch (SqlException sqlExc)
+                {
+                    if (sqlExc.Number == BaseEntity.UNIQUE_INDEX_VIOLATION ||
+                        sqlExc.Number == BaseEntity.CANNOT_INSERT_DUPLICATE_KEY_ROW)
+                    {
+                        result.Result = (int)OperationResult.ErrorDuplicateItem;
+                    }
+                    else if (sqlExc.Number == BaseEntity.FOREIGN_KEY_VIOLATION)
+                    {
+                        result.Result = (int)OperationResult.ErrorForeignKeyViolation;
+                    }
+                    else
+                    {
+                        result.Result = (int)OperationResult.Error;
+                    }
+                }
+            }
+            return result;
+        }
+
+
+        public ServiceResult AddInventarWithNewCalculator(Inventar inventar, Calculator calculator)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

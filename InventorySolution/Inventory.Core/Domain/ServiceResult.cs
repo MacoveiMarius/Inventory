@@ -35,6 +35,6 @@ namespace Inventory.Core.Domain
         public string OperationCode { get; set; }
 
         [DataMember]
-        public long EntityId { get; set; }
+        public int EntityId { get; set; }
     }
 }
