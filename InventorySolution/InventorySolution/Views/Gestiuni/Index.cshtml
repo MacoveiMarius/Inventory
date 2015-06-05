@@ -1,7 +1,5 @@
 ﻿@using System.Web.Optimization
-@using Inventory.Services
-@using InventorySolution
-@model InventorySolution.Models.SurseViewModel
+@model InventorySolution.Models.GestiuneViewModel
 @{
     ViewBag.Title = "Index";
 }
@@ -12,29 +10,33 @@
 @section JS
 {
     @Scripts.Render("~/scripts/xeditable")
-    @Scripts.Render("~/scripts/surse")
+    @Scripts.Render("~/scripts/gestiuni")
     <script type="text/javascript">
-        $(function() {
-            $.Surse.MakeEditables();
+        $(function () {
+            $.Gestiuni.Init();
+            $.Gestiuni.MakeEditables();
 
-            $('#confirm-delete').on('show.bs.modal', function(e) {
+            $.fn.editable.defaults.mode = 'inline';
+
+
+            $('#confirm-delete').on('show.bs.modal', function (e) {
                 $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 
                 $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
             });
-            
+
             $(document).on({
                 /*handle mouseclick*/
-                click: function() {
+                click: function () {
                     var $obj = $(this);
                     $.ajax({
                         type: "GET",
                         cache: false,
                         url: $obj.attr("href"),
                         data: {},
-                        success: function(data) {
+                        success: function (data) {
                             $obj.closest('#main').find('.list-group:first').append(data);
-                            $.Surse.MakeEditableLastAddedItem();
+                            $.Gestiuni.MakeEditableLastAddedItem();
                         }
                     });
                     return false;
@@ -43,22 +45,24 @@
         });
     </script>
 }
+
 <div class="panel panel-default">
     <!-- Default panel contents -->
     <div class="panel-heading">
-        Surse
-        <a href="@Url.Action("Create", "Surse")" class="btn-sm btn-primary add-custom-field"><i class="glyphicon glyphicon-plus"></i></a>
+        Gestiune
+        <a href="@Url.Action("Create", "Gestiuni")" class="btn-sm btn-primary add-custom-field"><i class="glyphicon glyphicon-plus"></i></a>
     </div>
     <div class="panel-body">
         <!-- List group -->
         <div class="list-group">
-            @foreach (var sursa in Model.Surse)
+            @foreach (var gestiune in Model.Gestiune)
             {
-                @Html.EditorFor(m => sursa, "SursaEditor")
+                @Html.EditorFor(m => gestiune, "GestiuneEditor")
             }
         </div>
     </div>
 </div>
+
 
 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

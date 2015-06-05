@@ -1,0 +1,24 @@
+﻿@model InventorySolution.Models.GestiuneModel
+
+@{
+    ViewBag.Title = "GestiuneEditor";
+}
+
+<div class="gestiune row list-group-item">
+    <div class="col-md-5">
+        <div class="col-sm-2 gestiune-id">
+            @string.Format("#{0}", Model.GestiuneId)
+        </div>
+        <div class="col-sm-10">
+            <a href="#" class="gestiune-body" id="@string.Format("gestiune_{0}", Model.GestiuneId)" data-type="address" data-pk="@Model.GestiuneId" data-value="@Model.ToValue()"></a><br />
+        </div>
+    </div>
+    <div class="col-md-2">
+        <a href="#" style="float: left" class="edit-gestiune-button btn-sm btn-default input-sm">
+            <i class="glyphicon glyphicon-pencil"></i>
+        </a>
+        <a data-href="@Url.Action("Delete", "Gestiuni", new {id = Model.GestiuneId})" style="float: left" class="btn btn-sm btn-danger input-sm" data-toggle="modal" data-target="#confirm-delete">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+</div>

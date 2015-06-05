@@ -71,6 +71,9 @@ namespace InventorySolution.Classes
             bundles.Add(new ScriptBundle("~/scripts/laboratoare")
                 .Include("~/scripts/ui-scripts/laboratoare.js"));
 
+            bundles.Add(new ScriptBundle("~/scripts/gestiuni")
+                .Include("~/scripts/ui-scripts/gestiuni.js"));
+
             #endregion
 
             //enables minification

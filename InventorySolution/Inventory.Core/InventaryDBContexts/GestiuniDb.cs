@@ -29,6 +29,10 @@ namespace Inventory.Core
         {
             get { return GetTable<Gestiune>(); }
         }
+        public Table<Inventar> Inventare
+        {
+            get { return GetTable<Inventar>(); }
+        }
         #endregion TABLES
     }
 }

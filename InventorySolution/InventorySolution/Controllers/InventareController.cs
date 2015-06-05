@@ -19,9 +19,25 @@ namespace InventorySolution.Controllers
         {
             InventareModel model = new InventareModel()
             {
-                Inventare = SVC.Inventare.GetInventare(true).Select(i =>
+                Inventare = SVC.Inventare.GetInventare(true).Select(inventar =>
                     new InventarDataModel
                     {
+                        InventarId = inventar.Id,
+                        Denumire = inventar.Denumire,
+                        Tip = inventar.TipEntity ?? new Tip(),
+                        Gestiune = inventar.GestiuneEntity ?? new Gestiune(),
+                        Laborator = inventar.LaboratorEntity ?? new Laborator(),
+                        Sursa = inventar.SursaEntity ?? new Sursa(),
+                        Natura = inventar.Natura,
+                        AnPFun = inventar.AnPFun,
+                        PVerbal = inventar.PVerbal,
+                        NrInventar = inventar.NrInventar,
+                        Serie = inventar.Serie,
+                        Pret = inventar.Pret,
+                        Valoare = inventar.Valoare,
+                        Cantitate = inventar.Cantitate,
+                        Mentiuni = inventar.Mentiuni,
+                        
                     }).ToList(),
                 Message = TempData["InventareMessage"] as MessageModel
             };
@@ -47,14 +63,16 @@ namespace InventorySolution.Controllers
                 return RedirectToAction("Index");
             }
 
-            InventarDataModel model = new InventarDataModel()
+            Tip tip = SVC.Tipuri.GetTip(inventar.TipId.Value) ?? new Tip();
+            
+            InventarDataModel inventarDetails = new InventarDataModel()
             {
                 InventarId = inventar.Id,
                 Denumire = inventar.Denumire,
-                //Tip = inventar.TipEntity ?? new Tip(),
-                //Gestiune = inventar.GestiuneEntity ?? new Gestiune(),
-                //Laborator = inventar.LaboratorEntity ?? new Laborator(),
-                //Sursa = inventar.SursaEntity ?? new Sursa(),
+                Tip = inventar.TipEntity ?? new Tip(),
+                Gestiune = inventar.GestiuneEntity ?? new Gestiune(),
+                Laborator = inventar.LaboratorEntity ?? new Laborator(),
+                Sursa = inventar.SursaEntity ?? new Sursa(),
                 Natura = inventar.Natura,
                 AnPFun = inventar.AnPFun,
                 PVerbal = inventar.PVerbal,
@@ -64,6 +82,54 @@ namespace InventorySolution.Controllers
                 Valoare = inventar.Valoare,
                 Cantitate = inventar.Cantitate,
                 Mentiuni = inventar.Mentiuni,
+                Message = TempData["InventareMessage"] as MessageModel
+            };
+            //var sursaCalc = SVC.Surse.GetSursaByNameInvariant(Sursa.SURSA_CALCULATOARE);
+            //if (sursaCalc != null && inventar.SursaId == sursaCalc.Id)
+            //{
+                var calculator = SVC.Calculatoare.GetCalculator(id);
+                if (calculator == null)
+                {
+                    TempData["calculatorMessage"] = new MessageModel
+                    {
+                        Message = new HtmlString(string.Format("Calculatorul #{0} nu exista", id)),
+                        Type = MessageType.Error,
+                        Icon = MessageIcon.ErrorIcon
+                    };
+                    return RedirectToAction("Index");
+                }
+            //}
+
+            CalculatorModel calculatorDetails = new CalculatorModel
+            {
+                CalculatorId=calculator.Id,
+                Procesor=calculator.Procesor,
+                Frecventa=calculator.Frecventa,
+                Hdd=calculator.Hdd,
+                Ram=calculator.Ram,
+                CdRom=calculator.CdRom,
+                Floppy=calculator.Floppy,
+                Zipp=calculator.Zipp,
+                Monitor=calculator.Monitor,
+                Tastatura=calculator.Tastatura,
+                Accesorii=calculator.Accesorii,
+                Mentiuni=calculator.Mentiuni,
+                Mouse=calculator.Mouse,
+                PlacaBaza=calculator.PlacaBaza,
+                PlacaVideo=calculator.PlacaVideo,
+                CdW=calculator.CdW,
+                CdWR=calculator.CdWR,
+                Dvd=calculator.Dvd,
+                PlacaRetea=calculator.PlacaRetea,
+                TvTuner=calculator.TvTuner,
+                Modem=calculator.Modem,
+                Message=TempData["calculatorMessage"] as MessageModel
+            };
+
+            InventarModel model = new InventarModel
+            {
+                Inventar = inventarDetails,
+                Calculator = calculatorDetails,
                 Message = TempData["InventareMessage"] as MessageModel
             };
             return View("Inventar", model);

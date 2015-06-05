@@ -9,7 +9,7 @@ using Inventory.Core.Domain;
 
 namespace InventorySolution.Controllers
 {
-    public class GestiuneController : Controller
+    public class GestiuniController : Controller
     {
         private IGestiuni GestiuniService
         {
@@ -70,13 +70,40 @@ namespace InventorySolution.Controllers
                 // TODO: Add insert logic here
                 int gestiuneId;
                 int.TryParse(Request.Form["pk"], out gestiuneId);
+                var nume = Request.Form["value[nume]"];
+                var prenume = Request.Form["value[prenume]"];
+                var catedra = Request.Form["value[catedra]"];
 
-                return RedirectToAction("Index");
+                var gestiune = new Gestiune
+                {
+                    Id = gestiuneId,
+                    Nume = nume,
+                    Prenume = prenume,
+                    Catedra = catedra
+                };
+
+                if (gestiuneId > 0)
+                {//update
+                    service = GestiuniService.UpdateGestiune(gestiune);
+                    msg = string.Format("gestiune #{0} actualizata cu succes", gestiuneId);
+                }
+                else
+                {//adaugare
+                    service = GestiuniService.AddGestiune(gestiune);
+                    msg = string.Format("gestiune #{0} adaugata cu succes", gestiuneId);
+                }
+                //return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                msg = string.Format("am intampinat o problema");
+                //return View();
             }
+            if (service.OperationResult < OperationResult.Success)
+            {
+                msg = string.Format("Am intampitan o eroarea");
+            }
+            return Json(new { Id = service.EntityId, Message = msg }, JsonRequestBehavior.DenyGet);
         }
 
         //
@@ -84,25 +111,8 @@ namespace InventorySolution.Controllers
  
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        //
-        // POST: /Gestiune/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            GestiuniService.DeleteGestiune(id);
+            return RedirectToAction("Index");
         }
     }
 }

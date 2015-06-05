@@ -43,5 +43,16 @@ namespace Inventory.Services
                 return result;
             }
         }
+
+        public Calculator GetCalculator(int id)
+        {
+            using (var context = CalculatoareDb.Create(_strDbConnectionString.ToString()))
+            {
+                var result = (from t in context.Calculatoare
+                              where t.Id==id
+                              select t).SingleOrDefault();
+                return result;
+            }
+        }
     }
 }

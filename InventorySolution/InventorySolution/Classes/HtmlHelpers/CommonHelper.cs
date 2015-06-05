@@ -39,7 +39,7 @@ namespace InventorySolution
             return link.ToString(TagRenderMode.Normal);
         }
 
-        public static MvcHtmlString ShowInventare(IList<Inventar> inventare)
+        public static MvcHtmlString ShowInventare(IList<InventarDataModel> inventare)
         {
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
             var content = string.Empty;
@@ -139,8 +139,8 @@ namespace InventorySolution
                     //creeaza link de editare inventar
                     var link = new TagBuilder("a");
                     link.MergeAttribute("href",
-                        inventar.Id > 0 ? urlHelper.Action("Details", "Inventare", new { id = inventar.Id }) : String.Empty);
-                    link.SetInnerText(string.Format("#{0}", inventar.Id));
+                        (inventar.InventarId > 0 ? urlHelper.Action("Details", "Inventare", new { id = inventar.InventarId}) : string.Empty));
+                    link.SetInnerText(string.Format("#{0}", inventar.InventarId));
 
                     var td = new TagBuilder("td");
                     td.InnerHtml = link.ToString(TagRenderMode.Normal);
@@ -159,11 +159,10 @@ namespace InventorySolution
                     //nume + prenume
                     //link de editare gestiune
                     link = new TagBuilder("a");
-                    link.MergeAttribute("href",
-                        inventar.GestiuneId > 0 ? urlHelper.Action("Details", "Gestiuni", new { id = inventar.GestiuneId }) : String.Empty);
+                    link.MergeAttribute("href", urlHelper.Action("Index", "Gestiuni"));
                     link.SetInnerText(
-                        inventar.GestiuneEntity == null ? String.Format("#{0}", inventar.GestiuneId)
-                        : string.Format("{0} {1}", inventar.GestiuneEntity.Nume, inventar.GestiuneEntity.Prenume));
+                        inventar.Gestiune == null ? String.Format("#{0}", inventar.Gestiune.Id)
+                        : string.Format("{0} {1}", inventar.Gestiune.Nume, inventar.Gestiune.Prenume));
 
                     td = new TagBuilder("td");
                     td.InnerHtml = link.ToString(TagRenderMode.Normal);
@@ -172,11 +171,10 @@ namespace InventorySolution
                     //laborator
                     //link de editare laborator
                     link = new TagBuilder("a");
-                    link.MergeAttribute("href",
-                        inventar.GestiuneId > 0 ? urlHelper.Action("Details", "Laboratoare", new { id = inventar.GestiuneId }) : String.Empty);
+                    link.MergeAttribute("href", urlHelper.Action("Index", "Laboratoare"));
                     link.SetInnerText(
-                        inventar.LaboratorEntity == null ? String.Format("#{0}", inventar.LaboratorId)
-                        : string.Format("{0}", inventar.LaboratorEntity.Nume));
+                        inventar.Laborator == null ? String.Format("#{0}", inventar.Laborator.Id)
+                        : string.Format("{0}", inventar.Laborator.Nume));
 
                     td = new TagBuilder("td");
                     td.InnerHtml = link.ToString(TagRenderMode.Normal);
@@ -185,11 +183,10 @@ namespace InventorySolution
                     //sursa
                     //link de editare sursa
                     link = new TagBuilder("a");
-                    link.MergeAttribute("href",
-                        inventar.GestiuneId > 0 ? urlHelper.Action("Details", "Surse", new { id = inventar.SursaId }) : String.Empty);
+                    link.MergeAttribute("href", urlHelper.Action("Index", "Surse"));
                     link.SetInnerText(
-                        inventar.SursaEntity == null ? String.Format("#{0}", inventar.SursaId)
-                        : string.Format("{0}", inventar.SursaEntity.Nume));
+                        inventar.Sursa == null ? String.Format("#{0}", inventar.Sursa.Id)
+                        : string.Format("{0}", inventar.Sursa.Nume));
 
                     td = new TagBuilder("td");
                     td.InnerHtml = link.ToString(TagRenderMode.Normal);
@@ -199,10 +196,10 @@ namespace InventorySolution
                     //link de editare tip
                     link = new TagBuilder("a");
                     link.MergeAttribute("href",
-                        inventar.TipId > 0 ? urlHelper.Action("Details", "Tipi", new { id = inventar.TipId }) : String.Empty);
+                        inventar.Tip.Id > 0 ? urlHelper.Action("Details", "Tipi", new { id = inventar.Tip.Id }) : String.Empty);
                     link.SetInnerText(
-                        inventar.TipEntity == null ? String.Format("#{0}", inventar.TipId)
-                        : string.Format("{0}", inventar.TipEntity.Nume));
+                        inventar.Tip == null ? String.Format("#{0}", inventar.Tip.Id)
+                        : string.Format("{0}", inventar.Tip.Nume));
 
                     td = new TagBuilder("td");
                     td.InnerHtml = link.ToString(TagRenderMode.Normal);

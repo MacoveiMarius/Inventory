@@ -12,5 +12,11 @@ namespace Inventory.Services
         List<Gestiune> GetGestiuni(bool loadFullData = false);
 
         Gestiune GetGestiune(int id);
+
+        ServiceResult UpdateGestiune(Gestiune updateGestiune);
+
+        ServiceResult AddGestiune(Gestiune gestiune);
+
+        void DeleteGestiune(int id);
     }
 }

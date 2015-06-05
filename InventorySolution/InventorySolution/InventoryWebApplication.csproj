@@ -112,7 +112,7 @@
     <Compile Include="Classes\HtmlHelpers\CommonHelper.cs" />
     <Compile Include="Classes\Utility\StringEnum.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\GestiuneController.cs" />
+    <Compile Include="Controllers\GestiuniController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventareController.cs" />
     <Compile Include="Controllers\LaboratoareController.cs" />
@@ -196,6 +196,7 @@
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\ui-scripts\gestiuni.js" />
     <Content Include="Scripts\ui-scripts\laboratoare.js" />
     <Content Include="Scripts\ui-scripts\tipuri.js" />
     <Content Include="Scripts\ui-scripts\surse.js" />
@@ -231,13 +232,14 @@
     <Content Include="Views\Tipuri\Index.cshtml" />
     <Content Include="Views\Laboratoare\EditorTemplates\LaboratorEditor.cshtml" />
     <Content Include="Views\Laboratoare\Index.cshtml" />
-    <Content Include="Views\Gestiune\EditorTemplates\GestiuneEditor.cshtml" />
-    <Content Include="Views\Gestiune\Index.cshtml" />
+    <Content Include="Views\Gestiuni\EditorTemplates\GestiuneEditor.cshtml" />
+    <Content Include="Views\Gestiuni\Index.cshtml" />
+    <Content Include="Views\Inventare\DisplayTemplates\CalculatorDisplay.cshtml" />
+    <Content Include="Views\Inventare\DisplayTemplates\InventarDisplay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Gestiune\DisplayTemplates\" />
-    <Folder Include="Views\Inventare\DisplayTemplates\" />
+    <Folder Include="Views\Gestiuni\DisplayTemplates\" />
     <Folder Include="Views\Inventare\EditorTemplates\" />
     <Folder Include="Views\Laboratoare\DisplayTemplates\" />
     <Folder Include="Views\Shared\DisplayTemplates\" />
