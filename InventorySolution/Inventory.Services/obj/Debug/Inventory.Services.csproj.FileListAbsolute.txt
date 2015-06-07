@@ -5,13 +5,6 @@ D:\USV\InventorySolution\Inventory.Services\bin\Debug\Inventory.Core.dll
 D:\USV\InventorySolution\Inventory.Services\bin\Debug\Inventory.Core.pdb
 D:\USV\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.dll
 D:\USV\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.pdb
-D:\GitHub\Inventory\InventorySolution\Inventory.Services\bin\Debug\Inventory.Services.dll
-D:\GitHub\Inventory\InventorySolution\Inventory.Services\bin\Debug\Inventory.Services.pdb
-D:\GitHub\Inventory\InventorySolution\Inventory.Services\bin\Debug\Inventory.Core.dll
-D:\GitHub\Inventory\InventorySolution\Inventory.Services\bin\Debug\Inventory.Core.pdb
-D:\GitHub\Inventory\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.csprojResolveAssemblyReference.cache
-D:\GitHub\Inventory\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.dll
-D:\GitHub\Inventory\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.pdb
 J:\Documents\Inventory\InventorySolution\Inventory.Services\bin\Debug\Inventory.Services.dll
 J:\Documents\Inventory\InventorySolution\Inventory.Services\bin\Debug\Inventory.Services.pdb
 J:\Documents\Inventory\InventorySolution\Inventory.Services\bin\Debug\Inventory.Core.dll
@@ -19,3 +12,10 @@ J:\Documents\Inventory\InventorySolution\Inventory.Services\bin\Debug\Inventory.
 J:\Documents\Inventory\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.csprojResolveAssemblyReference.cache
 J:\Documents\Inventory\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.dll
 J:\Documents\Inventory\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.pdb
+D:\GitHub\Inventory\InventorySolution\Inventory.Services\bin\Debug\Inventory.Services.dll
+D:\GitHub\Inventory\InventorySolution\Inventory.Services\bin\Debug\Inventory.Services.pdb
+D:\GitHub\Inventory\InventorySolution\Inventory.Services\bin\Debug\Inventory.Core.dll
+D:\GitHub\Inventory\InventorySolution\Inventory.Services\bin\Debug\Inventory.Core.pdb
+D:\GitHub\Inventory\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.csprojResolveAssemblyReference.cache
+D:\GitHub\Inventory\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.dll
+D:\GitHub\Inventory\InventorySolution\Inventory.Services\obj\Debug\Inventory.Services.pdb
