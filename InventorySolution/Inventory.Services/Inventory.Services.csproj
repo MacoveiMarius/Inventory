@@ -45,6 +45,9 @@
     <Compile Include="Calculatoare\CalculatoareService.cs" />
     <Compile Include="Calculatoare\Database\CalculatoareAccessor.cs" />
     <Compile Include="Calculatoare\Interfaces\ICalculatoare.cs" />
+    <Compile Include="Casare\CasariService.cs" />
+    <Compile Include="Casare\Database\CasariAccessor.cs" />
+    <Compile Include="Casare\Interfaces\ICasari.cs" />
     <Compile Include="Inventare\Database\InventareAccessor.cs" />
     <Compile Include="Inventare\Interfaces\IInventare.cs" />
     <Compile Include="Inventare\InventareService.cs" />

@@ -52,42 +52,44 @@
   </div><!-- /.container-fluid -->
 </nav>*@
 
+
 <nav class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
-        <a class="navbar-brand" href="#">TutorialsPoint</a>
+        <a class="navbar-brand" href="/Home/Index">Home</a>
     </div>
     <div>
         <ul class="nav navbar-nav">
             <li class="active">
-                <a href="#">iOS</a>
+                <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Inventare<span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="/Inventare/Index">Listare inventare</a></li>
+                    <li><a href="/Inventare/Create">Adauga inventar</a></li>
+                  </ul>
+                </li>
+              </ul>
+                @*<a href="/Inventare/Index">Inventar</a>*@
             </li>
             <li>
-                <a href="#">SVN</a>
+                @*@Html.ActionLink("Gestiune", "Index", "Gestiuni")*@
+                <a href="/Gestiuni/Index">Gestiune</a>
             </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    Java
-                    <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="#">jmeter</a>
-                    </li>
-                    <li>
-                        <a href="#">EJB</a>
-                    </li>
-                    <li>
-                        <a href="#">Jasper Report</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        @Html.ActionLink("About", "About", "Home")
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        @Html.ActionLink("Home", "Index", "Home")
-                    </li>
-                </ul>
+            <li>
+                @*@Html.ActionLink("Sursa", "Index", "Surse")*@
+                <a href="/Surse/Index">Sursa</a>
+            </li>
+            <li>
+                @*@Html.ActionLink("Tip", "Index", "Tipuri")*@
+                <a href="/Tipuri/Index">Tip</a>
+            </li>
+            <li>
+                @*@Html.ActionLink("Laboratoare", "Index", "Laboratoare")*@
+                <a href="/Laboratoare/Index">Laboratoare</a>
+            </li>
+            <li>
+                @*@Html.ActionLink("Casari", "Index", "Casari")*@
+                <a href="/Casari/Index">Casare</a>
             </li>
         </ul>
     </div>

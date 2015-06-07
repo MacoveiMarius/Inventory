@@ -48,6 +48,7 @@
     <Compile Include="Config.cs" />
     <Compile Include="Domain\BaseEntity.cs" />
     <Compile Include="Domain\Calculatoare\Calculator.cs" />
+    <Compile Include="Domain\Casare\Casare.cs" />
     <Compile Include="Domain\Inventare\Inventar.cs" />
     <Compile Include="Domain\Inventare\Natura.cs" />
     <Compile Include="Domain\OperationResult.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Domain\Surse\Sursa.cs" />
     <Compile Include="Domain\Laboratoare\Laborator.cs" />
     <Compile Include="Domain\Gestiuni\Gestiune.cs" />
+    <Compile Include="InventaryDBContexts\CasareDb.cs" />
     <Compile Include="InventaryDBContexts\GestiuniDb.cs" />
     <Compile Include="InventaryDBContexts\InventareDb.cs" />
     <Compile Include="InventaryDBContexts\TipuriDb.cs" />

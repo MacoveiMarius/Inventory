@@ -196,7 +196,7 @@ namespace InventorySolution
                     //link de editare tip
                     link = new TagBuilder("a");
                     link.MergeAttribute("href",
-                        inventar.Tip.Id > 0 ? urlHelper.Action("Details", "Tipi", new { id = inventar.Tip.Id }) : String.Empty);
+                        inventar.Tip.Id > 0 ? urlHelper.Action("Index", "Tipuri") : String.Empty);
                     link.SetInnerText(
                         inventar.Tip == null ? String.Format("#{0}", inventar.Tip.Id)
                         : string.Format("{0}", inventar.Tip.Nume));
@@ -367,8 +367,8 @@ namespace InventorySolution
                     //id
                     //creeaza link de editare inventar
                     var link = new TagBuilder("a");
-                    link.MergeAttribute("href",
-                        (cas.Id > 0 ? urlHelper.Action("Details", "Inventare", new { id = cas.Id }) : string.Empty));
+                    //link.MergeAttribute("href",
+                    //    (cas.Id > 0 ? urlHelper.Action("Details", "Inventare", new { id = cas.Id }) : string.Empty));
                     link.SetInnerText(string.Format("#{0}", cas.Id));
 
                     var td = new TagBuilder("td");

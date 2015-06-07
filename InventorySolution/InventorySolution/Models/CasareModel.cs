@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DataAnnotationsExtensions;
 
 namespace InventorySolution.Models
 {
@@ -67,13 +69,13 @@ namespace InventorySolution.Models
         [DisplayName("Cod")]
         public string Cod { get; set; }
 
-        //[Integer(ErrorMessage = "Durata normala trebuie sa fie un intreg")]
-        //[Range(0, 1000, ErrorMessage = "Durata normala trebuie sa in intervalul 0 - 1000")]
+        [Integer(ErrorMessage = "Durata normala trebuie sa fie un intreg")]
+        [Range(0, 1000, ErrorMessage = "Durata normala trebuie sa in intervalul 0 - 1000")]
         [DisplayName("DurataNorm")]
         public int? DurataNormala { get; set; }
 
-        //[Integer(ErrorMessage = "Durata reala trebuie sa fie un intreg")]
-        //[Range(0, 1000, ErrorMessage = "Durata reala trebuie sa in intervalul 0 - 1000")]
+        [Integer(ErrorMessage = "Durata reala trebuie sa fie un intreg")]
+        [Range(0, 1000, ErrorMessage = "Durata reala trebuie sa in intervalul 0 - 1000")]
         [DisplayName("DurataReal")]
         public int? DurataReal { get; set; }
 

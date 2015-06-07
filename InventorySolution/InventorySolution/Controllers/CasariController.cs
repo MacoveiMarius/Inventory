@@ -70,6 +70,7 @@ namespace InventorySolution.Controllers
                     Cantitate = inventar.Cantitate,
                     Valoare = inventar.Valoare,
                     PVerbal=inventar.PVerbal,
+                    InventarId = id,
                     DataCasare = DateTime.Now.ToShortDateString(),
                 };
                 if (inventar.LaboratorId.HasValue)
@@ -100,61 +101,65 @@ namespace InventorySolution.Controllers
         [HttpPost]
         public ActionResult Create(CasareModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                MessageModel message = null;
-                if (ModelState.IsValid)
+                try
                 {
-                    Casare casare = new Casare
+                    MessageModel message = null;
+                    if (ModelState.IsValid)
                     {
-                        Denumire = model.Denumire,
-                        Nume = model.Nume,
-                        Prenume = model.Prenume,
-                        Laborator = model.Laborator,
-                        AnPFun = model.AnPFun,
-                        NrInventar = model.NrInventar,
-                        Serie = model.Serie,
-                        Pret = model.Pret,
-                        Cantitate = model.Cantitate,
-                        Valoare = model.Valoare,
-                        PVerbal = model.PVerbal,
-                        DataCasare = Convert.ToDateTime(model.DataCasare),
-                        Cod = model.Cod,
-                        DurataNormala = model.DurataNormala,
-                        DurataReal = model.DurataReal,
-                        Mentiuni = model.Mentiuni
-                    };
+                        Casare casare = new Casare
+                        {
+                            Denumire = model.Denumire,
+                            Nume = model.Nume,
+                            Prenume = model.Prenume,
+                            Laborator = model.Laborator,
+                            AnPFun = model.AnPFun,
+                            NrInventar = model.NrInventar,
+                            Serie = model.Serie,
+                            Pret = model.Pret,
+                            Cantitate = model.Cantitate,
+                            Valoare = model.Valoare,
+                            PVerbal = model.PVerbal,
+                            DataCasare = Convert.ToDateTime(model.DataCasare),
+                            Cod = model.Cod,
+                            DurataNormala = model.DurataNormala,
+                            DurataReal = model.DurataReal,
+                            Mentiuni = model.Mentiuni
+                        };
 
 
-                    ServiceResult serviceResult = SVC.Inventare.Caseaza(model.InventarId, casare);
-                    if (serviceResult.Result == (int)OperationResult.Success)
-                    {
-                        message = new MessageModel
+                        ServiceResult serviceResult = SVC.Inventare.Caseaza(model.InventarId, casare);
+                        if (serviceResult.Result == (int) OperationResult.Success)
                         {
-                            Message =
-                                new HtmlString(string.Format("Am adaugat casarea #{0}", serviceResult.EntityId)),
-                            Icon = MessageIcon.SuccessIcon,
-                            Type = MessageType.Success
-                        };
-                    }
-                    else
-                    {
-                        message = new MessageModel
+                            message = new MessageModel
+                            {
+                                Message =
+                                    new HtmlString(string.Format("Am adaugat casarea #{0}", serviceResult.EntityId)),
+                                Icon = MessageIcon.SuccessIcon,
+                                Type = MessageType.Success
+                            };
+                        }
+                        else
                         {
-                            Message =
-                                new HtmlString(string.Format("Am intampnat o eroare")),
-                            Icon = MessageIcon.ErrorIcon,
-                            Type = MessageType.Error
-                        };
+                            message = new MessageModel
+                            {
+                                Message =
+                                    new HtmlString(string.Format("Am intampnat o eroare")),
+                                Icon = MessageIcon.ErrorIcon,
+                                Type = MessageType.Error
+                            };
+                        }
                     }
+
+                    return RedirectToAction("Index");
                 }
-                
-                return RedirectToAction("Index");
+                catch
+                {
+                    return RedirectToAction("Create", "Casari", new {id = model.InventarId});
+                }
             }
-            catch
-            {
-                return RedirectToAction("Create", "Casari", new { id = model.InventarId });
-            }
+            return View("Create", model);
         }
         
         //

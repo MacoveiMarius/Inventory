@@ -9,7 +9,7 @@
 {
     <div class="panel-body">
         @Html.EditorFor(m => m, "CasareEditor");
-
+        @Html.HiddenFor(m => m.InventarId)
         <div class="row">
             <div class="col-md-12">
                 <button name='Save' type='submit' value='Caseaza' class="btn btn-primary">Save</button>

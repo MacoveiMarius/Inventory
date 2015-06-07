@@ -12,11 +12,6 @@ body {
     color: #696969;
 }
 
-a:link {
-    color: #034af3;
-    text-decoration: underline;
-}
-
 a:visited {
     color: #505abc;
 }
@@ -188,15 +183,6 @@ legend {
 
 textarea {
     min-height: 75px;
-}
-
-input[type="text"], 
-input[type="password"] {
-    border: 1px solid #ccc;
-    padding: 2px;
-    font-size: 1.2em;
-    color: #444;
-    width: 200px;
 }
 
 select {
